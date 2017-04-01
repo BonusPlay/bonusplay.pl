@@ -1,0 +1,20 @@
+extends template/layout
+
+block content
+	#main.container
+		h1 #{projectName}
+		h2
+			ul
+				li
+					| Description: #{projectDesc}
+				li
+					| Language: #{projectLang}
+				- if(typeof(projectLink) !== 'undefined')
+					li
+						a(href=projectLink, target='_blank') Link
+				- if(typeof(projectVer) !== 'undefined')
+					li
+						| Latest version: #{projectVer}
+				- if(typeof(projectDown) !== 'undefined')
+					li
+						a(href=projectDown, target='_blank') Download

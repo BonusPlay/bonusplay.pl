@@ -1,0 +1,10 @@
+html
+	head
+		link(href='/css/player.css', rel='stylesheet')
+	body
+		#music_player
+			img#button_play(src='/images/button_play.png', height='64', width='64', onclick='play();')
+			#volume_bg
+			img#volume_fg(src='/images/volume_bar_bg.png', height='64', width='154' style='position: relative')
+	script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+	script(src='/js/player.js')

@@ -1,0 +1,108 @@
+{
+	"other": {
+		"help": {
+			"name": "/help",
+			"type": "generic",
+			"message": {
+				"attachment": {
+					"type":"template",
+					"payload": {
+						"template_type":"generic",
+						"elements": [{
+							"title": "BonusBot Help",
+							"subtitle": "list of BonusBot commands",
+							"image_url": "http://rzultamorda.pl/images/BonusBot.png",
+							"item_url": "http://fb.com/TheBonusBot"
+						}]
+					}
+				}
+			}
+		},
+		"debug": {
+			"name": "/debug",
+			"type": "generic",
+			"message": {
+				"attachment": {
+					"type":"template",
+					"payload": {
+						"template_type":"generic",
+						"elements": [{
+							"title": "BonusBot Debug Menu",
+							"image_url": "http://rzultamorda.pl/images/debug.jpg",
+							"subtitle": "Fuck this :/",
+							"buttons": [{
+								"type": "postback",
+								"title": "Typing ON",
+								"payload": "/debug-set-typing-on"
+							},	{
+								"type": "postback",
+								"title": "Typing OFF",
+								"payload": "/debug-set-typing-off"
+							}]
+						}]
+					}
+				}
+			}
+		}
+	},
+	"commands": [{
+		"name": "tl;dr",
+		"type": "image",
+		"message": "tldr.gif"
+	}, {
+		"name": "Poi",
+		"type": "audio",
+		"message": "Poi.mp3"
+	}, {
+		"name": "tableflip",
+		"type": "text",
+		"message": "(╯°□°）╯︵ ┻━┻"
+	}, {
+		"name": "shrug",
+		"type": "text",
+		"message": "¯\\_(ツ)_/¯"
+	}, {
+		"name": "lennyface",
+		"type": "text",
+		"message": "( ͡° ͜ʖ ͡°)"
+	},{
+		"name": "kniv",
+		"type": "audio",
+		"message": "KNIV.mp3"
+	}, {
+		"name": "noice",
+		"type": "audio",
+		"message": "noice.mp3"
+	}, {
+		"name": "astralis",
+		"type": "audio",
+		"message": "astralis.mp3"
+	}, {
+		"name": "kawai",
+		"type": "audio",
+		"message": "kawai.mp3"
+	}, { 
+		"name": "Pursuk",
+		"type": "image",
+		"message": "Pursuk.png"
+	}, {
+		"name": "plan",
+		"type": "image",
+		"message": "plan.jpeg"
+	}, {
+		"name": "smug",
+		"type": "image",
+		"message": "smug.gif"
+	}, {
+		"name": "jpeg",
+		"type": "video",
+		"message": "jpeg.mp4"
+	}],
+	"payloads": [{
+		"name": "/debug-set-typing-on",
+		"type": "typingon"
+	}, {
+		"name": "/debug-set-typing-off",
+		"type": "typingoff"
+	}]
+}
