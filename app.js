@@ -3,40 +3,31 @@
 var express 		= require('express');
 var subdomain 		= require('express-subdomain');
 var rateLimiter		= require('express-rate-limit');
-var path 			= require('path');
 var favicon 		= require('serve-favicon');
 var logger 			= require('morgan');
-var cookieParser 	= require('cookie-parser');
 var bodyParser 		= require('body-parser');
-
-//var discordBot 		= require('./helpers/discordHelper');
+var cookieParser 	= require('cookie-parser');
 
 var app = express();
+
 var limiter = new rateLimiter({
 	windowMs: 60*1000,
 	max: 100,
 	delayMs: 0
 });
-
 app.use(limiter);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', './views');
+app.set('view engine', 'pug');
 
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(favicon('./public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('./public'));
 
 app.use(subdomain('api', require('./routes/api')));
-app.use('/', require('./routes/main'));
-
-app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
-});
+app.use('/', require('./routes'));
 
 if (app.get('env') === 'development') {
 	app.use(function(err, req, res, next) {
@@ -49,6 +40,7 @@ if (app.get('env') === 'development') {
 }
 
 app.use(function(err, req, res, next) {
+	console.log(err);
 	res.status(err.status || 500);
 	res.render('error', {
 		message: err.message,
