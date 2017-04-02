@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('./public'));
 
-app.use(subdomain('api', require('./routes/api')));
+app.use(subdomain('api', require('./routes/apiSSL')));
 app.use('/', require('./routes'));
 
 if (app.get('env') === 'development') {

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-'use strict';
 
 var app 	= require('../app.js');
+var appSSL 	= require('../appSSL.js');
 var config 	= require('../config');
 var debug 	= require('debug')('ServerBonus:server');
 var http 	= require('http');
@@ -9,13 +9,20 @@ var https 	= require('https');
 var models 	= require('../models');
 
 var port 	= normalizePort(process.env.PORT || config.port);
+var portSSL = normalizePort(process.env.PORT || config.portSSL);
 
 app.set('port', port);
+appSSL.set('port', portSSL);
 
 var server = http.createServer(app);
+var serverSSL = http.createServer(appSSL);
 
 models.sequelize.sync().then(function() {
 	server.listen(port);
+	server.on('error', onError);
+	server.on('listening', onListening);
+
+	serverSSL.listen(portSSL);
 	server.on('error', onError);
 	server.on('listening', onListening);
 });

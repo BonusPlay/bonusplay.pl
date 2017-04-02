@@ -31,5 +31,6 @@ module.exports = {
 			dialect: 'mysql'
 		}
 	},
-	port: 3001
+	port: 3000,
+	portSSL: 3001
 }

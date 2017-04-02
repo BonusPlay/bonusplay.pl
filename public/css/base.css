@@ -1,228 +1,33 @@
-/*
- * 	FONTS
- */
-
 @font-face {
-    font-family: proximanova-condensed-bold;
-    src: url(/fonts/proximanovacond/proximanovacond-bold-webfont.ttf) format('truetype')
+	font-family: "Overwatch";
+	src: url("https://us.battle.net/forums/static/fonts/bignoodletoo/bignoodletoo.woff")
+	format('woff');
 }
-
-@font-face {
-    font-family: proximanovacond-semibold;
-    src: url(/fonts/proximanovacond/proximanovacond-semibold-webfont.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: proximanovaexcn-medium;
-    src: url(/fonts/proximanovacond/proximanovaexcn-medium-webfont.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: proximanovaexcn-semibold;
-    src: url(/fonts/proximanovacond/proximanovaexcn-semibold-webfont.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: ProximaNovaCond;
-    src: url(/fonts/proximanovacond/proximanovacond-regular-webfont.ttf) format('truetype')
-}
-
-/*
- * 	GENERAL
- */
 
 body {
 	display: flex;
-	min-height: 100%;
+	min-height: 100vh;
 	flex-direction: column;
-	overflow-x: hidden;
-	font-family: proximanovacond-semibold;
-	font-size: 22pt;
-	line-height: 26pt;
+	font-family: "Roboto", sans-serif;
 }
-
-section.container-fluid {
-	padding: 0px;
-}
-
-.center {
-	justify-content: center;
-	align-items: center;
-}
- 
-.container-fluid {
-	padding: 0;
-}
-
-.bg {
-	width: 100%;
-}
-
-h3 {
-	text-align: center;
-}
-
-.author {
-	text-align: right;
-	font-size: 18pt;
-}
-
-.center {
-	display: flex;
-	
-}
-
-/*
- * 	NAVBAR
- */
- 
-nav.navbar {
-	background-color: #bba58d;
-	padding: 15px 100px 15px 100px;
-	-webkit-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
-
-nav.navbar.shrink {
-	opacity: 0.75;
-	padding: 0px 10px 0px 10px;
-}
-
-a.navbar-brand span {
-	padding-left: 10px;
-}
-
-#center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-#icons {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-#icons a {
-	padding: 0px 10px 0px 10px;
-}
-
-/*
- * 	MAIN
- */
 
 main {
-	font-family: proximanovacond-semibold;
+	margin: auto;
+	flex: 1 0 auto;
+	font-size: medium;
 }
 
-main section {
-	padding-bottom: 0;
-}
- 
-#one {
-	background-color: black;
+nav {
+	background-color: #BD272D;
 }
 
-#one .quote {
-	position: absolute;
-	color: #da2d00;
-	bottom: 10%;
-	right: 10%;
+/* logo from navbar */
+#logo {
+	padding-left: 20px;
 }
 
-#two {
-	background-color: #954f4d;
-	padding-left: 100px;
-	padding-right: 100px;
-}
-
-#two .col-6 {
-	display: flex;
-}
-
-#three {
-	padding-bottom: 0;
-}
-
-#quote-three {
-	position: absolute;
-	
-	bottom: 35%;
-	left: 10%;
-}
-
-#four {
-	background-color: #d79463;
-	padding-left: 100px;
-	padding-right: 100px;
-}
-
-#four h3 {
-	text-align: center;
-}
-
-/*
- * 	WEDGE
- */
- 
-.wedge-top
-{
-	border-style: solid;
-	position: absolute;
-	width: 100%;
-	left: 0;
-	z-index: 10;
-	
-	border-bottom-width: 0px;
-	border-top-width: 100px;
-	border-left-width: 0;
-	border-right-width: 0;
-}
-
-.wedge-bottom {
-	border-style: solid;
-	position: absolute;
-	width: 100%;
-	left: 0;
-	z-index: 1;
-	bottom: 0;
-	
-	border-bottom-width: 0px;
-	border-top-width: 100px;
-	border-left-width: 0;
-	border-right-width: 0;
-}
-
-#wedge-one {
-	border-top-color: transparent;
-	border-right-color: #f0ece0;
-	border-bottom-color: transparent;
-	border-left-color: #954f4d;
-}
-
-#wedge-two {
-	border-top-color: #954f4d;
-	border-right-color: transparent;
-	border-bottom-color: #954f4d;
-	border-left-color: transparent;
-}
-
-#wedge-three {
-	background-color: transparent;
-	border-top-color: transparent;
-	border-right-color: #954f4d;
-	border-bottom-color: #954f4d;
-	border-left-color: #d79463;
-}
-
-/*
- * 	FOOTER
- */
-
-footer.footer {
-	font-size: 16pt;
-	background-color: #bba58d;
-	padding-top: 20px;
-	padding-bottom: 20px;
+footer.page-footer {
+	background-color: #BD272D;
+	padding-top: 0px;
+	margin-top: 0px;
 }

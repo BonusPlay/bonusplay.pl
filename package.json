@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production nodemon ./bin/www",
-    "pretest": "NODE_ENV=development DEBUG=* nodemon ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -15,10 +14,19 @@
     "express-rate-limit": "^2.6.0",
     "express-subdomain": "^1.0.5",
     "glob-all": "^3.1.0",
+    "grunt": "^1.0.1",
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.97.8",
     "morgan": "~1.7.0",
     "mysql": "^2.12.0",
     "pug": "^2.0.0-beta6",
     "sequelize": "^3.28.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-shell-spawn": "^0.3.10",
+    "time-grunt": "^1.4.0"
   }
 }
