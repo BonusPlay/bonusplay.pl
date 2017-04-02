@@ -3,21 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index');
+  res.render('index', { title: 'Express' });
 });
 
-router.get('/snake', function(req, res, next) {
-	res.render('snake');
-});
-
+router.use('/', require('./redirects'));
 router.use('/article', require('./article'));
-
-router.get('/admin.php', function(req, res, next) {
-	res.redirect('https://www.youtube.com/watch?v=kxopViU98Xo');
-});
-
-router.get('*', function(req, res) {
-	res.render('404');
-});
+router.use('/project', require('./project'));
 
 module.exports = router;

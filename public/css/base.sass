@@ -1,0 +1,233 @@
+/*
+ * 	IMPORTS
+ */
+@import url('https://fonts.googleapis.com/css?family=Hind')
+
+/*
+ * 	VARIABLES
+ */
+$gold: #ffa000
+$text: #212121
+
+/*
+ * 	GENERAL
+ */
+body
+	display: flex
+	flex-direction: column
+	overflow-x: hidden
+	min-height: 100%
+	color: $text
+	font-family: 'Hind', sans-serif
+	font-size: 22pt
+	line-height: 26pt
+
+.bg
+	width: 100%
+
+.spacer
+	width: 90%
+	border-bottom: 1px solid $text
+	margin: 10px auto 10px auto
+
+.spacer-half
+	width: 45%
+	border-bottom: 1px solid $text
+	margin: 10px auto 10px auto
+
+section
+	text-align: center
+	justify-content: center
+	align-items: center
+	margin: 25px 0 25px 0
+
+/*
+ * 	NAVBAR
+ */
+
+nav.navbar
+	background-color: $gold
+	padding: 15px 100px 15px 100px
+	transition: all 0.4s ease
+	-o-transition: all 0.4s ease
+	-ms-transition: all 0.4s ease
+	-moz-transition: all 0.4s ease
+	-webkit-transition: all 0.4s ease
+
+	.navbar-brand
+		padding-left: 0
+
+	&.shrink
+		opacity: 0.75
+		padding: 0 10px 0 10px
+
+		.navbar-brand
+			padding-left: 15px
+
+	div
+		display: flex
+		align-items: center
+
+
+a.navbar-brand .d-inline-block
+	padding: 0 10px 0 10px
+
+#icons
+	justify-content: flex-end
+
+	a
+		padding: 10px 10px 10px 10px
+		transition-property: transform
+		-o-transition-property: transform
+		-ms-transition-property: transform
+		-moz-transition-property: transform
+		-webkit-transition-property: transform
+		transition-duration: 0.3s
+		-o-transition-duration: 0.3s
+		-ms-transition-duration: 0.3s
+		-moz-transition-duration: 0.3s
+		-webkit-transition-duration: 0.3s
+		transition-timing-function: ease-in
+		-o-transition-timing-function: ease-in
+		-ms-transition-timing-function: ease-in
+		-moz-transition-timing-function: ease-in
+		-webkit-transition-timing-function: ease-in
+
+		&:hover
+			transform: scale(1.3)
+			-o-transform: scale(1.3)
+			-ms-transform: scale(1.3)
+			-moz-transform: scale(1.3)
+			-webkit-transform: scale(1.3)
+
+/*
+ * 	MAIN
+ */
+
+#top
+	width: 100%
+	height: 0
+	padding-top: 62.5%
+	position: relative
+
+	background: url(/img/header.jpg) no-repeat
+	background-size: 100% auto
+
+#title
+	position: absolute
+	top: 60%
+	right: 10%
+	padding: 10px 10px 10px 10px
+	border-radius: 20px
+
+	text-align: center
+	justify-content: center
+	align-items: center
+
+	background: rgba(0, 0, 0, 0.5)
+	color: $gold
+
+#one
+	margin-top: 10px
+
+	.container
+		width: 75%
+		display: flex
+		align-items: center
+		align-content: center
+		justify-content: center
+
+	img
+		width: 40%
+
+#two
+	text-align: center
+
+#technologies
+	align-items: center
+	align-content: center
+	justify-content: center
+
+	.category
+		display: block
+		align-items: center
+		align-content: center
+		justify-content: center
+
+	.container
+		display: flex
+		align-items: center
+		align-content: center
+		justify-content: center
+
+	.content
+		display: block
+		align-items: center
+		align-content: center
+		justify-content: center
+
+	.tech
+		display: flex
+		width: 134px
+		height: 203px
+		margin: 5px 0 5px 0
+		align-items: center
+		align-content: center
+		justify-content: center
+
+		&:hover p
+			transition-property: opacity
+			-o-transition-property: opacity
+			-ms-transition-property: opacity
+			-moz-transition-property: opacity
+			-webkit-transition-property: opacity
+			transition-duration: 0.3s
+			-o-transition-duration: 0.3s
+			-ms-transition-duration: 0.3s
+			-moz-transition-duration: 0.3s
+			-webkit-transition-duration: 0.3s
+			transition-timing-function: ease-in
+			-o-transition-timing-function: ease-in
+			-ms-transition-timing-function: ease-in
+			-moz-transition-timing-function: ease-in
+			-webkit-transition-timing-function: ease-in
+			opacity: 1
+
+		&:hover img
+			transition-property: transform, padding-bottom, opacity
+			-o-transition-property: transform, padding-bottom, opacity
+			-ms-transition-property: transform, padding-bottom, opacity
+			-moz-transition-property: transform, padding-bottom, opacity
+			-webkit-transition-property: transform, padding-bottom, opacity
+			transition-duration: 0.3s
+			-o-transition-duration: 0.3s
+			-ms-transition-duration: 0.3s
+			-moz-transition-duration: 0.3s
+			-webkit-transition-duration: 0.3s
+			transition-timing-function: ease-in
+			-o-transition-timing-function: ease-in
+			-ms-transition-timing-function: ease-in
+			-moz-transition-timing-function: ease-in
+			-webkit-transition-timing-function: ease-in
+			transform: scale(1.2)
+			-o-transform: scale(1.2)
+			-ms-transform: scale(1.2)
+			-moz-transform: scale(1.2)
+			-webkit-transform: scale(1.2)
+			padding-bottom: 20px
+
+		img
+			width: 100px
+
+		p
+			margin: 0
+			opacity: 0
+
+/*
+ * 	FOOTER
+ */
+
+footer.footer
+	padding: 20px 0 20px 0
+	background-color: #bba58d
+	font-size: 16pt
