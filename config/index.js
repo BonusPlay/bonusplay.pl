@@ -21,9 +21,6 @@ module.exports = {
 	github: {
 		token: '<secret>'
 	},
-	riot: {
-		key: ''
-	},
 	database: {
 		user: '<secret>',
 		password: '<secret>',
@@ -34,11 +31,5 @@ module.exports = {
 			dialect: 'mysql'
 		}
 	},
-	ssl: {
-		privateKey: '/etc/letsencrypt/live/bonusplay.pl/privkey.pem',
-		certificate: '/etc/letsencrypt/live/bonusplay.pl/cert.pem',
-		chain: '/etc/letsencrypt/live/bonusplay.pl/chain.pem',
-		port: 3001
-	},
-	port: 3000
+	port: 3001
 }

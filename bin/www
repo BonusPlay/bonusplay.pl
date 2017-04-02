@@ -1,53 +1,34 @@
 #!/usr/bin/env node
+'use strict';
 
 var app 	= require('../app.js');
-var appSSL 	= require('../appSSL.js');
-var debug 	= require('debug')('WebBonus:server');
+var config 	= require('../config');
+var debug 	= require('debug')('ServerBonus:server');
 var http 	= require('http');
 var https 	= require('https');
-var config 	= require('../config');
-var fs 		= require('fs');
 var models 	= require('../models');
 
-var privateKey = fs.readFileSync(config.ssl.privateKey);
-var certificate = fs.readFileSync(config.ssl.certificate);
-var chain = fs.readFileSync(config.ssl.chain);
-
-var port = normalizePort(process.env.PORT || config.port);
-var portSSL = normalizePort(process.env.PORT || config.ssl.port);
+var port 	= normalizePort(process.env.PORT || config.port);
 
 app.set('port', port);
-appSSL.set('port', portSSL);
 
 var server = http.createServer(app);
-var serverSSL = http.createServer(appSSL);
-/*
-var serverSSL = https.createServer({
-	key: privateKey,
-	cert: certificate,
-	ca: chain
-}, appSSL);
-*/
 
 models.sequelize.sync().then(function() {
 	server.listen(port);
-	server.on('error', onError);
-	server.on('listening', onListening);
-
-	serverSSL.listen(portSSL);
 	server.on('error', onError);
 	server.on('listening', onListening);
 });
 
 function normalizePort(val) {
 	var port = parseInt(val, 10);
-	
+
 	if (isNaN(port))
 		return val;
-	
+
 	if (port >= 0)
 		return port;
-	
+
 	return false;
 }
 

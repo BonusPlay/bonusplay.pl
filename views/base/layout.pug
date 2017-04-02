@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		meta(property='og:site_name', content='BonusPlay')
+		meta(property='og:title', content='BonusPlay')
+		meta(property='og:description', content='BonusPlay\'s website')
+		meta(property='og:image', content='https://www.bonusplay.pl/images/avatar.png')
+		meta(property='og:image:width', content=600)
+		meta(property='og:image:height', content=600)
+		meta(property='og:type', content='website')
+		meta(property='og:url', content='https://bonusplay.pl/')
+		meta(name='google-site-verification', content='h9tlth5Cd8lqaw0kQKmTL50mpiQjep_sb6MkTG_k-1c')
+		title= BonusPlay
+		include ./pre-includes.pug
+	body
+		include ./navbar.pug
+		block content
+		include ./footer.pug
+		include ./post-includes.pug
