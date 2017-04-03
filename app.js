@@ -42,9 +42,7 @@ app.use(subdomain('api', require('./routes/api')));
 app.use('/', require('./routes'));
 
 app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
+	res.render('404');
 });
 
 app.use(function(err, req, res, next) {
