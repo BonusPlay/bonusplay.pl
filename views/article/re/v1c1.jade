@@ -1,0 +1,47 @@
+extends ../../base/layout
+
+block content
+	main.article
+		h1.center Reverse Engineering Volume 1 Chapter 1 - Basics of basics
+		p In this chapter we’ll make a simple cheat for “Cave Story” that will give us infinite health. Let’s go!
+		ul
+			li
+				a(href='http://www.cavestory.org/') Cave Story
+			li
+				a(href='http://www.cheatengine.org/') Cheat Engine
+			li
+				a(href='https://en.wikipedia.org/wiki/X86_instruction_listings') x86 instruction listings
+		br
+		p First of all, let’s start the game and attach CE to it.
+		img(src='/img/article/rev1c1/1.png')
+		p We can see that we have 3HP at start.
+		img(src='/img/article/rev1c1/2.png')
+		p We search for value “3” and value type “4 bytes” since int is 4 bytes long. Hit “First scan”.
+		img(src='/img/article/rev1c1/3.png')
+		p CE gives us long list of addresses.
+		img(src='/img/article/rev1c1/4.png')
+		p Way too much to try it out one by one. Let’s try to change our HP.
+		img(src='/img/article/rev1c1/5.png')
+		p Now we have 2HP. Let’s search for that. This time hit “next scan” to search only in address list from previous scan.
+		img(src='/img/article/rev1c1/6.png')
+		p Now the list is shorter. Repeat the process (you can also increase your HP) until you have 1 address on list.
+		img(src='/img/article/rev1c1/7.png')
+		p Double click it to save it and change its value.
+		img(src='/img/article/rev1c1/8.png')
+		p Viola! Now we have 60 HP.
+		img(src='/img/article/rev1c1/9.png')
+		p We just found the address of our HP value in memory and then overwrote it. Time to do something cooler. RMB => “Find out what writes to this address”. Now change your HP value one more time (in game). A record will show up. RMB => “Show this address in the disassembler”.
+		img(src='/img/article/rev1c1/10.png')
+		p Now we can see the assembly that’s writing to the HP variable.
+		img(src='/img/article/rev1c1/11.png')
+		p We can clearly see the
+		code sub ecx, eax
+		p Let’s change that
+			code sub
+			| to
+			code add
+			|  by double clicking.
+		img(src='/img/article/rev1c1/12.png')
+		p Again, let’s get damaged.
+		img(src='/img/article/rev1c1/13.png')
+		p That concludes this chapter. In the next chapter we will write a program that will do this for us!
