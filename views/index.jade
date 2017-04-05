@@ -184,17 +184,22 @@ block content
 		section#four.container-fluid
 			h1 Games
 			#games
-				| Placeholder
+			//
+				.card.game
+					img.card-img-top(src='/img/game/lol.png')
+					.card-block
+						h4.card-title League of Legends
+						p.card-text This is a test card. This is a test card. This is a test card. This is a test card.
 		.spacer
-	//
 		section#five.container-fluid.row
 			h1 Quotes
-			.col-md-4.offset-md-2
-				.quote
-					p We don't make mistakes,
-					p we have happy little accidents.
-					p.author Bob Ross
-			.col-md-4.offset-md-2
-					p The pain of flesh is fleeting,
-					p true torment lasts forever.
-					p.author Helblinde
+			//
+				.col-md-4.offset-md-2
+					.quote
+						p We don't make mistakes,
+						p we have happy little accidents.
+						p.author Bob Ross
+				.col-md-4.offset-md-2
+						p The pain of flesh is fleeting,
+						p true torment lasts forever.
+						p.author Helblinde

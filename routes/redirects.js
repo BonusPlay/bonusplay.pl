@@ -6,7 +6,7 @@ router.get('/github', function(req, res, next) {
 });
 
 router.get('/discord', function(req, res, next) {
-	res.redirect('https://discord.gg/hhH8Vua');
+	res.redirect('https://discord.gg/tYk4PW5');
 });
 
 router.get('/youtube', function(req, res, next) {
