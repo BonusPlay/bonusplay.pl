@@ -1,3 +1,7 @@
-This is bonusplay.pl website dev branch.
+This is bonusplay.pl website version 4.0 [current].
+Uploading it for archive and sharing purposes.
 
-It probably contains unused code here and there.
+Stuff used:
+ - NodeJS (duh)
+ - Jade (HTML templating)
+ - Sass (CSS preprocessor)
