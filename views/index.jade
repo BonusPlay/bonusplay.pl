@@ -11,7 +11,7 @@ block content
 			h1 About me
 			.container
 				img(src='/img/missing.png' height='600px' width='300px')
-				div
+				#text
 					| This is a very long text about me, that contains very useless information.
 					| This is a very long text about me, that contains very useless information.
 					| This is a very long text about me, that contains very useless information.
@@ -122,6 +122,7 @@ block content
 							.content
 								img(src='/img/icon/wireshark.png')
 								p Wireshark
+					.container
 						.tech(data-toggle='tooltip' data-placement='top' title='Advanced')
 							.content
 								img(src='/img/icon/audacity.png')
@@ -152,7 +153,7 @@ block content
 								p Python
 		.spacer
 		section#three.container-fluid.row.align-items-start
-			#Projects.col-4
+			#Projects.col
 				h2 Projects
 				a(href='www.hsmod.com')
 					img(src='/img/icon/unity.png')
@@ -175,7 +176,7 @@ block content
 				a
 					img(src='/img/icon/java.png')
 					p HexaChess [on hold]
-			#Articles.col-4
+			#Articles.col
 				h2 Articles
 				a(href='/article/re')
 					img(src='/img/icon/assembly.png')

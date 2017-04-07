@@ -151,8 +151,17 @@ a.navbar-brand .d-inline-block
 		align-content: center
 		justify-content: center
 
+		@media screen and (max-width: 1024px)
+			display: block
+
 	img
-		width: 40%
+		width: 350px
+
+#text
+	max-width: 40%
+
+	@media screen and (max-width: 1024px)
+		max-width: 100%
 
 #two
 	text-align: center
@@ -227,6 +236,10 @@ a.navbar-brand .d-inline-block
 			opacity: 0
 
 #three
+	margin: 0 10% 0 10%
+	@media screen and (max-width: 1024px)
+		margin: 0
+
 	a
 		display: flex
 		height: 50px
@@ -240,6 +253,10 @@ a.navbar-brand .d-inline-block
 
 		p
 			margin: 0
+
+	#projects
+		a
+			margin-left: 10%
 
 .game
 	width: 250px
