@@ -10,12 +10,17 @@ block content
 		section#one.container-fluid
 			h1 About me
 			.container
-				img(src='/img/missing.png' height='600px' width='300px')
+				// img(src='/img/missing.png' height='600px' width='300px')
+				.image
+					| Placeholder div until I find a good picture of myself.
 				#text
-					| This is a very long text about me, that contains very useless information.
-					| This is a very long text about me, that contains very useless information.
-					| This is a very long text about me, that contains very useless information.
-					| This is a very long text about me, that contains very useless information.
+					| My name is Adam Kliś, I'm currently 18. I've been gaming since I was 5 and coding for 5 years now.
+					| What's different about me, is that I learn by practice, trial-and-error. That allows me to understand
+					| the code 'my way'. I've started with Java, followed by C++, C, Android, C# and later webdev in order.
+					br
+					br
+					| In my free time I like to play guitar, collect old coins and play computer games with my friends.
+					| Currently looking for internship in Warsaw, preferably in Java.
 		.spacer
 		section#two.container-fluid
 			h1 Technologies
@@ -181,11 +186,11 @@ block content
 				a(href='/article/re')
 					img(src='/img/icon/assembly.png')
 					p Reverse Engineering in practice
+	//
 		.spacer
 		section#four.container-fluid
 			h1 Games
 			#games
-			//
 				.card.game
 					img.card-img-top(src='/img/game/lol.png')
 					.card-block
@@ -194,7 +199,6 @@ block content
 		.spacer
 		section#five.container-fluid.row
 			h1 Quotes
-			//
 				.col-md-4.offset-md-2
 					.quote
 						p We don't make mistakes,
