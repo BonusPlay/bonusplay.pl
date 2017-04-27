@@ -3,7 +3,8 @@
   "version": "1.2.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "NODE_ENV=production nodemon ./bin/www",
+    "pretest": "NODE_ENV=development DEBUG=* nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
