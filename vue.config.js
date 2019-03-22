@@ -2,7 +2,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-	configureWebpack: {
+    configureWebpack: {
 		plugins: [
 			new CopyWebpackPlugin([{
 				from: path.join(__dirname, "src/static"),
@@ -13,7 +13,8 @@ module.exports = {
 		],
 		devtool: 'source-map'
 	},
-	chainWebpack: config => {
+
+    chainWebpack: config => {
 		config
 			.plugin('html')
 			.tap(args => {
@@ -34,5 +35,11 @@ module.exports = {
 			})
 			.loader('ifdef-loader')
 			.end();
-	}
+	},
+
+    pwa: {
+      name: 'bonusplay.pl',
+      themeColor: '#6b1b80',
+      msTileColor: '#6b1b80'
+    }
 }

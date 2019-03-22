@@ -8,22 +8,18 @@
 		<section class="container">
 			<div class="tile is-ancestor">
 				<div class="tile is-parent is-vertical">
-					<article class="tile is-child message is-dark">
+					<article v-for="section in sections" :key="section.title" class="tile is-child message is-dark">
 						<div class="message-header">
-							Reverse Engineering
+							{{ section.title }}
 						</div>
+							{{ section.subtitle }}
+						<ul>
+							<router-link v-for="article in section.articles" :key="article.title" :to="`/blog/${article.to}`" tag="li">{{ article.title }}</router-link>
+						</ul>
 					</article>
 					<article class="tile is-child message is-dark">
 						<div class="message-header">
 							Random
-						</div>
-						sdfg;kjfgsdjkl;
-					</article>
-				</div>
-				<div class="tile is-parent is-vertical">
-					<article class="tile is-child message is-dark">
-						<div class="message-header">
-							Networking
 						</div>
 						sdfg;kjfgsdjkl;
 					</article>
@@ -42,7 +38,17 @@ import HelloWorld from "@/components/HelloWorld.vue";
 		HelloWorld
 	}
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+	sections = [
+		{
+			title: "Reverse Engineering",
+			subtitle: "Random articles about the art of reverse engineering, they require programming experience prior to reading.",
+			articles: [
+				{ to: "article1", title: "title1" }
+			]
+		}
+	]
+}
 </script>
 
 <style lang="less" scoped>
