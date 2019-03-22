@@ -13,19 +13,18 @@
 						</p>
 						<br>
 						<p>
-							People tell me, that I know way too many languages and that I'm probably a
-							<i>'jack of all trades master of none'</i>.
+							People tell me, that I know way too many languages and that I'm probably a <i>'jack of all trades master of none'</i>.
 							However, think of my programming skills as a toolbox full of fun things.
-							As you learn more and more languages you begin to see not only similarities between them, but differences as well.
+							As you learn more and more languages you begin to see not only similarities between them but differences as well.
 							Some of them want to kill you <i><b>*cough*</b>C++<b>*cough*</b></i>, some of them offer great packaging systems.
-							Another has almost infinite amount of libraries.
-							You begin to see differences between them and choose right tool for right job.
+							Another has an almost infinite amount of libraries.
+							You begin to see differences between them and choose the right tool for the right job.
 							Why learn how to use only one tool?
-							Do we really have to use favourite screwdriver, when a nailgun would solve the problem 10x faster?
+							Do we really have to use the favorite screwdriver, when a nailgun would solve the problem 10x faster?
 						</p>
 						<br>
 						<p>
-							In my free time I like to play guitar, collect old coins and play computer games with my friends.
+							In my free time, I like to play guitar, collect old coins and play computer games with my friends.
 						</p>
 					</span>
 				</div>
