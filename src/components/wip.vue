@@ -1,0 +1,19 @@
+<template>
+    <div class="container is-center is-flex-column">
+        <figure class="image">
+            <img :src="require('@/assets/wip.webp')" loop muted autoplay/>
+        </figure>
+        <br/>
+        <h1 class="title is-3">
+            <p>Work In Progress</p>
+            Please come back later.
+        </h1>
+    </div>
+</template>
+
+<script lang="ts">
+	import {Component, Vue} from "vue-property-decorator";
+
+	@Component
+	export default class wip extends Vue {}
+</script>

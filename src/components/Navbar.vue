@@ -7,14 +7,26 @@
 				:to="item.to"
 				class="navbar-item"
 			>{{ item.name }}</router-link>
-			<a href="/cv" class="navbar-item">CV</a>
+			<div class="navbar-item has-dropdown is-hoverable">
+				<a class="navbar-link">CV</a>
+				<div class="navbar-dropdown">
+					<a href="/cv_en" class="navbar-item">
+						<img :src="require('@/assets/en.svg')" class="flag"/>
+						English
+					</a>
+					<a href="/cv_pl" class="navbar-item">
+						<img :src="require('@/assets/pl.svg')" class="flag"/>
+						Polski
+					</a>
+				</div>
+			</div>
 		</div>
 		<div class="navbar-menu">
 			<div class="navbar-end">
-				<router-link v-for="item in right" :key="item.name" :to="item.to" class="navbar-item">
+				<a v-for="item in right" :key="item.name" :href="item.to" class="navbar-item">
 					<b-icon :icon="item.icon"/>
 					<span>{{ item.name }}</span>
-				</router-link>
+				</a>
 			</div>
 		</div>
 	</nav>
@@ -44,12 +56,41 @@ export default class Navbar extends Vue {
 .navbar {
 	background-color: #6b1b80;
 
-	.navbar-item {
+	.navbar-link {
+		background-color: #6b1b80;
 		color: whitesmoke;
 
 		&:hover {
 			background-color: #854497;
 		}
 	}
+
+	.navbar-dropdown {
+	 	background-color: #6b1b80;
+	 	border-color: #854497;
+	}
+
+	.navbar-dropdown a.navbar-item:hover {
+		color: whitesmoke;
+	}
+
+	.navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
+		background-color: #6b1b80;
+		border-color: #854497;
+	}
+
+	.navbar-item {
+		color: whitesmoke;
+		background-color: #6b1b80;
+
+		&:hover {
+			background-color: #854497;
+		}
+	}
+}
+
+.flag {
+	width: 1vw;
+	margin-right: 5px;
 }
 </style>
