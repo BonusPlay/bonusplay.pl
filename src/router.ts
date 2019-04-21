@@ -1,13 +1,22 @@
 import Vue from "vue";
-import Router from "vue-router";
+import { default as Router, RouteConfig } from "vue-router";
 import Home from "./views/Home.vue";
 import Blog from "./views/Blog.vue";
 import E404 from "./views/404.vue";
 import Api from "./views/Api.vue";
 
-import website from "./components/blog/website.vue";
+import BlogPost from "./components/blog/post.vue";
+import BlogWebsite from "./components/blog/website.vue";
+import BlogMultiplayer from "./components/blog/multiplayer.vue";
 
 Vue.use(Router);
+
+function withPrefix(prefix: string, routes: RouteConfig[]): RouteConfig[] {
+	return routes.map(route => {
+		route.path = prefix + route.path;
+		return route;
+	});
+}
 
 export default new Router({
 	routes: [
@@ -16,16 +25,22 @@ export default new Router({
 			component: Home
 		},
 		{
+			// registers blog route as PostList
 			path: "/blog",
-			component: Blog,		
+			component: Blog
+		},
+		{
+			// registers blog posts with BlogPost base
+			path: "/blog",
+			component: BlogPost,
 			children: [
 				{
-					path: "/home",
-					component: website
+					path: "website",
+					component: BlogWebsite
 				},
 				{
-					path: "website",
-					component: website
+					path: "multiplayer",
+					component: BlogMultiplayer
 				}
 			]
 		},

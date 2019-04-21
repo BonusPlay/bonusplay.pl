@@ -15,3 +15,7 @@
 .is-flex-row {
     flex-direction: row;
 }
+
+#app code {
+	background-color: #363636;
+}

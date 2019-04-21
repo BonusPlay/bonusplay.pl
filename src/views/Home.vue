@@ -63,18 +63,6 @@
         </section>
         <section class="section">
             <p class="title is-1 section-title">Technologies I use</p>
-            <!-- <div
-                v-for="(_, index) in Math.floor(tech.length / 5) + 1"
-                :key="index"
-                class="container is-fluid is-center level"
-            >
-                <img
-                    v-for="item in tech.slice(index * 5, index * 5 + 5)"
-                    :key="item"
-                    :src="require(`@/assets/icons-tech/${item}.svg`)"
-                    class="my-icon"
-                >
-            </div> -->
             <div class="container is-center is-flex-wrap">
                 <img
                         :key="item"
@@ -122,7 +110,7 @@
                     "This website and it's overcomplicated, over the top backend architecture.",
                 links: [
                     {
-                        to: "https://github.com/BonusPlay/bonusplay.pl",
+						to: "https://github.com/BonusPlay/bonusplay.pl",
                         name: "Source",
                         icon: "github"
                     },
@@ -176,9 +164,9 @@
             "python",
             "redis",
             //"sass",
-            "spring",
+			"spring",
+			"traefik",
             "trello",
-            //"ue",
             "unity"
         ];
 

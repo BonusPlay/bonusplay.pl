@@ -1,7 +1,15 @@
 <template>
 	<div id="app">
 		<Navbar/>
-		<router-view class="main"/>
+		<transition
+			name="fade"
+			mode="out-in"
+			@beforeLeave="beforeLeave"
+			@enter="enter"
+			@afterEnter="afterEnter"
+		>
+			<router-view class="main"/>
+		</transition>
 		<MyFooter/>
 	</div>
 </template>
@@ -17,7 +25,25 @@ import MyFooter from "./components/Footer.vue";
 		MyFooter
 	}
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+	prevHeight: string | null = "0";
+
+	beforeLeave(element: any) {
+		this.prevHeight = getComputedStyle(element).height;
+	}
+
+	enter(element: any) {
+		const { height } = getComputedStyle(element);
+		element.style.height = this.prevHeight;
+		setTimeout(() => {
+			element.style.height = height;
+		});
+	}
+
+	afterEnter(element: any) {
+		element.style.height = "auto";
+	}
+}
 </script>
 
 
@@ -45,6 +71,19 @@ export default class App extends Vue {}
 
 	.title {
 		color: whitesmoke;
+	}
+
+	.fade-enter-active,
+	.fade-leave-active {
+		transition-duration: 0.2s;
+		transition-property: height, opacity;
+		transition-timing-function: ease;
+		overflow: hidden;
+	}
+	
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0;
 	}
 }
 </style>
