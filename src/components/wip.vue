@@ -1,5 +1,5 @@
 <template>
-    <div class="container is-center is-flex-column">
+    <div class="container is-center is-flex-col">
         <figure class="image">
             <img :src="require('@/assets/wip.webp')" loop muted autoplay/>
         </figure>

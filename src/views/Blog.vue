@@ -6,9 +6,12 @@
 			</div>
 		</section>
 		<section class="container">
-			<!-- <wip/> -->
-			<div class="columns container">
-				<article v-for="section in sections" :key="section.title" class="message is-dark column is-4">
+			<div class="is-flex-wrap is-space-between">
+				<article
+					v-for="section in sections"
+					:key="section.title"
+					class="message is-dark blog-item is-flex-col"
+				>
 					<div class="message-header">{{ section.title }}</div>
 					{{ section.subtitle }}
 					<br>
@@ -49,13 +52,16 @@ export default class Home extends Vue {
 			articles: [{ to: "website", title: "Making of bonusplay.pl" }]
 		},
 		{
-			title: "Other",
-			subtitle: "Random articles that I didn't know where to put.",
+			title: "Networking in Video Games",
+			subtitle: "My adventures in game dev.",
 			articles: [
 				{
-					to: "multiplayer",
-					title:
-						"Networking in video games - from intern to architect"
+					to: "multiplayer/0",
+					title: "Basics of basics"
+				},
+				{
+					to: "multiplayer/1",
+					title: "Input parsing"
 				}
 			]
 		}
@@ -64,6 +70,8 @@ export default class Home extends Vue {
 </script>
 
 <style lang="less" scoped>
+@import "../common.less";
+
 .hero {
 	margin-top: 10vh;
 	margin-bottom: 2vh;
@@ -72,5 +80,33 @@ export default class Home extends Vue {
 
 .message.is-dark {
 	background-color: transparent;
+
+	@media @desktop {
+		width: calc((100% - 2.5vw * 2) / 3);
+
+		// margin between items except last
+		&:not(:nth-child(3n)) {
+			margin-right: 2.5vw;
+		}
+	}
+
+	@media @tablet {
+		margin: 0 2.5vw;
+		width: calc((100% - 2.5vw - 5vw * 2) / 2);
+
+		// margin between items except last
+		&:not(:nth-child(2n)) {
+			margin-right: 2.5vw;
+		}
+	}
+
+	@media @mobile {
+		margin: 0 5vw;
+		width: 100%;
+	}
+
+	.button {
+		margin: 1vw 1vw;
+	}
 }
 </style>

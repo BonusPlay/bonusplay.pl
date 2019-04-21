@@ -2,7 +2,10 @@
 	<div class="has-text-justified content">
 		<h1 class="title is-1 has-text-centered">Website</h1>In this blog post, I'm going to describe the architecture of this very website.
 		The goal was to have a high performance, OK looking (I'm not a designer) website and learn a lot of new stuff on the way there.
+		Here is a screenshot of my server running 3 different domains, 2 databases, mail server and a few more things that I forgot about.
+		I think that ~1% of CPU usage at idle and 155MB of RAM for everything combined (including OS!) is a really good result.
 		<div class="has-text-centered">
+			<img :src="require('@/assets/blog/website00.webp')"/>
 			<img :src="require('@/assets/power.jpg')">
 		</div>
 		<h1 class="title is-3 has-text-centered">Frontend</h1>Frontend is written in Vue. The reasony I prefer Vue over React is that it separates all 3
@@ -29,11 +32,12 @@
 			<li>LessCSS - just CSS, with a little bit more umph.</li>
 			<li>PWA - why not, since webpack + Vue allow to cache a lot of stuff "by default".</li>
 		</ul>
-		<h1 class="title is-3 has-text-centered">Backend</h1>Here comes the more interesting stuff. I wanted high performance, low cost backend.
+		<h2 class="title is-2 has-text-centered">Backend</h2>Here comes the more interesting stuff. I wanted high performance, low cost backend.
 		Why?
 		<i>"Science isn't about why, it's about why not!"</i> ~ Cave Johnson.
-		<br>
-		<br>First of all, I wanted to easily host multiple domains on same server. I quickly learned, that I'm going to need a reverse proxy.
+		<br><br><br>
+		<h4 class="title is-4">Reverse Proxy</h4>
+		First of all, I wanted to easily host multiple domains on same server. I quickly learned, that I'm going to need a reverse proxy.
 		I had previously used nginx, but I wanted something better. After more searching I've found and instantly fell in love with traefik.
 		A high performance, low cost reverse proxy written in Go. It even comes with a load balancer! I'm running traefik dashboard on port that's blocked
 		from going outside, but I can connect to it with a simple ssh tunnel (
@@ -42,7 +46,7 @@
 		<div class="has-text-centered">
 			<img :src="require('@/assets/icons-tech/traefik.svg')">
 		</div>
-		<br>
+		<h4 class="title is-4">SSL</h4>
 		I decided, that in {{ new Date().getFullYear() }} SSL was a must. I wanted a wildcard certificate, but I didn't want to pay for it.
 		Luckilly, Let's encrypt had my back. With
 		<code>certbot</code> and it's cloudflare plugin I managed to obtain a wildcard certificate for my domain
@@ -51,7 +55,8 @@
 		<div class="has-text-centered">
 			<img :src="require('@/assets/icons-tech/letsencrypt.svg')">
 		</div>
-		<br>So, we've got reverse proxy and load balancer with SSL, but we still haven't served a single file to user.
+		<h4 class="title is-4">Web Server</h4>
+		So, we've got reverse proxy and load balancer with SSL, but we still haven't served a single file to user.
 		I was debating what to use and my thought process looked something like this:
 		<ul>
 			<li>Java Spring (kotlin) - too heavy</li>
@@ -72,7 +77,7 @@
 				<code>bonusplay.pl</code> - main website.
 			</li>
 			<li>
-				<code>dev.bonusplay.pl</code> - development. This is used to publish development builds of my website.
+				<code>dev.bonusplay.pl</code> - testing environment. This is used to publish future builds of my website.
 			</li>
 			<li>
 				<code>api.bonusplay.pl</code> - API. Used by released applications.
@@ -80,11 +85,24 @@
 		</ul>
 		All 3 websites are actually hosted by same Go executable (with goroutines). The executable also has a very simple service file,
 		so it restarts on crash and autostarts on server boot.
+		<br><br>
+		<h4 class="title is-4">Database</h4>
+		For databases (unused by this project), I chose:
+		<ul>
+			<li>Redis - great cache</li>
+			<li>MariaDB - better MySQL</li>
+		</ul>
+		<h4 class="title is-4">Mail server</h4>
+		Auch. This bit here took me longest to setup and figure out. No clever tricks, just a ton of guides, even more documentation and
+		a lot of time. Dovecot + Postfix. If you have a better way to do it, feel free to contact me. I'm always ready to learn something new!
+		<h1 class="title is-3 has-text-centered">Afterword</h1>
+		I hope this post inspired you to make your own website and will save you a lot of trouble on your way there.
+		<br><br>
 	</div>
 </template>
 
 <style lang="less" scoped>
-@import "../../common.css";
+@import "../../common.less";
 
 img {
 	max-height: 25vh;

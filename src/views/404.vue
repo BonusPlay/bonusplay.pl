@@ -1,5 +1,5 @@
 <template>
-	<div class="container is-center is-flex-column">
+	<div class="container is-center is-flex-col">
 		<figure class="image">
 			<video :src="require('@/assets/404.webm')" loop muted autoplay/>
 		</figure>
@@ -11,5 +11,5 @@
 </template>
 
 <style lang="less" scoped>
-	@import "../common.css";
+@import "../common.less";
 </style>

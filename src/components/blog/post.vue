@@ -1,7 +1,9 @@
 <template>
 	<section class="section">
 		<div class="container has-text-left">
-			<router-link to="/blog" class="button is-dark">Back</router-link>
+			<button @click="$router.go(-1)" class="button is-dark">
+				<b-icon icon="arrow-left"/>Back
+			</button>
 			<router-view/>
 		</div>
 	</section>
@@ -10,5 +12,9 @@
 <style lang="less" scoped>
 .container {
 	margin-top: 5vh;
+}
+
+.button .icon:first-child:last-child {
+	margin-right: 0;
 }
 </style>

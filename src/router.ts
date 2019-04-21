@@ -7,7 +7,8 @@ import Api from "./views/Api.vue";
 
 import BlogPost from "./components/blog/post.vue";
 import BlogWebsite from "./components/blog/website.vue";
-import BlogMultiplayer from "./components/blog/multiplayer.vue";
+import BlogMultiplayer0 from "./components/blog/multiplayer/0.vue";
+import BlogMultiplayer1 from "./components/blog/multiplayer/1.vue";
 
 Vue.use(Router);
 
@@ -38,10 +39,16 @@ export default new Router({
 					path: "website",
 					component: BlogWebsite
 				},
-				{
-					path: "multiplayer",
-					component: BlogMultiplayer
-				}
+				...withPrefix("multiplayer", [
+					{
+						path: "/0",
+						component: BlogMultiplayer0
+					},
+					{
+						path: "/1",
+						component: BlogMultiplayer1
+					}
+				])
 			]
 		},
 		{
