@@ -3,6 +3,16 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const path = require("path");
 
+// auto import common.less to all components
+const types = ["vue-modules", "vue", "normal-modules", "normal"];
+function addStyleResource(rule) {
+	rule.use("style-resource")
+		.loader("style-resources-loader")
+		.options({
+			patterns: [path.resolve(__dirname, "./src/common.less")]
+		});
+}
+
 module.exports = {
 	configureWebpack: {
 		plugins: [
@@ -21,10 +31,13 @@ module.exports = {
 	},
 
 	chainWebpack: config => {
+		// move HTML file
 		config.plugin("html").tap(args => {
 			args[0].template = "src/index.html";
 			return args;
 		});
+
+		// add ifdef loader
 		config.module
 			.rule("ifdef")
 			.test(/\.js?$/)
@@ -39,6 +52,11 @@ module.exports = {
 			})
 			.loader("ifdef-loader")
 			.end();
+
+		// auto import common.less
+		types.forEach(type =>
+			addStyleResource(config.module.rule("less").oneOf(type))
+		);
 	},
 	pwa: {
 		name: "bonusplay.pl",

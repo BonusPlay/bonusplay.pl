@@ -1,36 +1,62 @@
-@desktop:	~"only screen and (min-width: 1088px)";
-@tablet:	~"only screen and (min-width: 769px) and (max-width: 1087px)";
-@mobile:	~"only screen and (max-width: 768px)";
+@desktop: ~"only screen and (min-width: 1088px)";
+@tablet: ~"only screen and (min-width: 769px) and (max-width: 1087px)";
+@mobile: ~"only screen and (max-width: 768px)";
 
 @primary: #6b1b80;
 @secondary: lighten(@primary, 7.5%);
 @text: whitesmoke;
+@bg-1: #363636;
+
+//non-essential styles imported from another pen
+.aspect-ratio(@width, @height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: " ";
+		width: 100%;
+		padding-top: (@height / @width) * 100%;
+	}
+
+	> .content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
 
 .is-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .is-flex-wrap {
 	display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .is-flex-col {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .is-flex-row {
 	display: flex;
-    flex-direction: row;
+	flex-direction: row;
 }
 
 .is-space-between {
 	justify-content: space-between;
 }
 
+// code
 #app code {
-	background-color: #363636;
+	background-color: @bg-1;
+}
+
+// code link
+#app a code {
+	color: #9a38ff;
 }

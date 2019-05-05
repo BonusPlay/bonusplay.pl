@@ -102,8 +102,6 @@
 </template>
 
 <style lang="less" scoped>
-@import "../../common.less";
-
 img {
 	max-height: 25vh;
 }

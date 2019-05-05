@@ -73,8 +73,6 @@ export default class Navbar extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../common.less";
-
 .navbar {
 	background-color: @primary;
 
@@ -105,6 +103,7 @@ export default class Navbar extends Vue {
 	.navbar-item {
 		color: @text;
 		background-color: @primary;
+		cursor: pointer;
 
 		&:hover {
 			background-color: @secondary;

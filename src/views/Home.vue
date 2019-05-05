@@ -6,7 +6,7 @@
 					<h1 class="title is-1">About me</h1>
 					<span class="has-text-justified">
 						<p>
-							My name is Adam Kliś, I'm currently {{getAge(new Date(1999, 1, 7))}}. I've been gaming since I was {{getAge(new Date())}} and coding for 5 years now.
+							My name is Adam Kliś, I'm currently {{getAge(new Date(1999, 1, 7))}}. I've been gaming since I was 6 and coding for over 7 years now.
 							What's different about me, is that I learn by practice, trial-and-error.
 							That allows me to understand the code 'my way'.
 							I've started with Java, followed by C++, C, Android, C# and later webdev in order.
@@ -141,7 +141,7 @@ export default class Home extends Vue {
 					icon: "github"
 				},
 				{
-					to: "/blog/re/counter-bonus",
+					to: "/blog/reverse-engineering/counter-bonus",
 					name: "article",
 					icon: "link"
 				}
@@ -188,8 +188,6 @@ export default class Home extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../common.less";
-
 #me {
 	max-width: 50vw;
 }

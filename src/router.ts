@@ -6,7 +6,15 @@ import E404 from "./views/404.vue";
 import Api from "./views/Api.vue";
 
 import BlogPost from "./components/blog/post.vue";
-import BlogWebsite from "./components/blog/website.vue";
+
+// web
+import BlogWebsite from "./components/blog/web/website.vue";
+
+// RE
+import BlogCounterBonus from "./components/blog/reverse-engineering/counter-bonus.vue";
+
+// multiplayer
+import BlogHsmod from "./components/blog/multiplayer/hsmod.vue";
 import BlogMultiplayer0 from "./components/blog/multiplayer/0.vue";
 import BlogMultiplayer1 from "./components/blog/multiplayer/1.vue";
 
@@ -35,11 +43,23 @@ export default new Router({
 			path: "/blog",
 			component: BlogPost,
 			children: [
-				{
-					path: "website",
-					component: BlogWebsite
-				},
+				...withPrefix("reverse-engineering", [
+					{
+						path: "/counter-bonus",
+						component: BlogCounterBonus
+					}
+				]),
+				...withPrefix("web", [
+					{
+						path: "/website",
+						component: BlogWebsite
+					}
+				]),
 				...withPrefix("multiplayer", [
+					{
+						path: "/hsmod",
+						component: BlogHsmod
+					},
 					{
 						path: "/0",
 						component: BlogMultiplayer0

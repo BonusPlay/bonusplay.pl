@@ -9,7 +9,3 @@
 		</h1>
 	</div>
 </template>
-
-<style lang="less" scoped>
-@import "../common.less";
-</style>

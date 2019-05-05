@@ -30,38 +30,49 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import wip from "@/components/wip.vue";
 
-@Component({
-	components: {
-		wip
-	}
-})
+@Component
 export default class Home extends Vue {
 	sections = [
 		{
 			title: "Reverse Engineering",
 			subtitle:
 				"Random articles about the art of reverse engineering, they require programming experience prior to reading.",
-			articles: [{ to: "", title: "Coming soon" }]
+			articles: [
+				{
+					to: "reverse-engineering/counter-bonus",
+					title: "Counter-Bonus the CS:GO cheat"
+				}
+			]
 		},
 		{
 			title: "Webdev",
 			subtitle:
-				"My adventures in webdev, how it sucks and how to make it suck less",
-			articles: [{ to: "website", title: "Making of bonusplay.pl" }]
+				"My adventures in webdev, how it sucks and how to make it suck less.",
+			articles: [{ to: "web/website", title: "Making of bonusplay.pl" }]
 		},
 		{
 			title: "Networking in Video Games",
 			subtitle: "My adventures in game dev.",
 			articles: [
 				{
+					to: "multiplayer/hsmod",
+					title: "Networking layer in HSMod"
+				}
+			]
+		},
+		{
+			title: "Networking in Video Games - tutorial",
+			subtitle: `This is a series of guides, that will teach you quite a lot about networking in video games. 
+			If you are an expert in this topic, these guides won't be of any use to you, but otherwise they should make a pretty good base to start off from.`,
+			articles: [
+				{
 					to: "multiplayer/0",
-					title: "Basics of basics"
+					title: "0) Basics of basics"
 				},
 				{
 					to: "multiplayer/1",
-					title: "Input parsing"
+					title: "1) Input parsing"
 				}
 			]
 		}
@@ -70,16 +81,15 @@ export default class Home extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../common.less";
-
 .hero {
 	margin-top: 10vh;
 	margin-bottom: 2vh;
-	background-color: #6b1b80;
+	background-color: @primary;
 }
 
 .message.is-dark {
 	background-color: transparent;
+	border: 1px solid @bg-1;
 
 	@media @desktop {
 		width: calc((100% - 2.5vw * 2) / 3);
@@ -106,7 +116,7 @@ export default class Home extends Vue {
 	}
 
 	.button {
-		margin: 1vw 1vw;
+		margin: 0.5vh 1vw;
 	}
 }
 </style>
