@@ -35,44 +35,51 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Home extends Vue {
 	sections = [
 		{
-			title: "Reverse Engineering",
-			subtitle:
-				"Random articles about the art of reverse engineering, they require programming experience prior to reading.",
+			title: "Random projects",
+			subtitle: "Random, unrelated articles about (un)finished projects from wide range of topics.",
 			articles: [
 				{
 					to: "reverse-engineering/counter-bonus",
 					title: "Counter-Bonus the CS:GO cheat"
+				},
+				{
+					to: "multiplayer/hsmod",
+					title: "Networking layer in HSMod"
+				},
+				{
+					to: "web/website",
+					title: "Making of bonusplay.pl"
+				}
+			]
+		},
+		{
+			title: "Reverse Engineering",
+			subtitle: "A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
+			articles: [
+				{
+					to: "",
+					title: "coming soon!"
 				}
 			]
 		},
 		{
 			title: "Webdev",
-			subtitle:
-				"My adventures in webdev, how it sucks and how to make it suck less.",
-			articles: [{ to: "web/website", title: "Making of bonusplay.pl" }]
-		},
-		{
-			title: "Networking in Video Games",
-			subtitle: "My adventures in game dev.",
+			subtitle: "My adventures in webdev, how it sucks and how to make it suck less.",
 			articles: [
 				{
-					to: "multiplayer/hsmod",
-					title: "Networking layer in HSMod"
+					to: "",
+					title: "coming soon!"
 				}
 			]
 		},
 		{
-			title: "Networking in Video Games - tutorial",
-			subtitle: `This is a series of guides, that will teach you quite a lot about networking in video games. 
+			title: "Networking in Video Games",
+			subtitle: `This is a series of guides, that will teach you quite a lot about networking in video games.
 			If you are an expert in this topic, these guides won't be of any use to you, but otherwise they should make a pretty good base to start off from.`,
 			articles: [
 				{
-					to: "multiplayer/0",
-					title: "0) Basics of basics"
-				},
-				{
-					to: "multiplayer/1",
-					title: "1) Input parsing"
+					to: "",
+					title: "coming soon!"
 				}
 			]
 		}
