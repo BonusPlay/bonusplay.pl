@@ -13,10 +13,10 @@ import BlogWebsite from "./components/blog/web/website.vue";
 // RE
 import BlogCounterBonus from "./components/blog/reverse-engineering/counter-bonus.vue";
 
-// multiplayer
-import BlogHsmod from "./components/blog/multiplayer/hsmod.vue";
-import BlogMultiplayer0 from "./components/blog/multiplayer/0.vue";
-import BlogMultiplayer1 from "./components/blog/multiplayer/1.vue";
+// networking
+import BlogHsmod from "./components/blog/networking/hsmod.vue";
+import BlogMultiplayer0 from "./components/blog/networking/0.vue";
+import BlogMultiplayer1 from "./components/blog/networking/1.vue";
 
 Vue.use(Router);
 
@@ -55,7 +55,7 @@ export default new Router({
 						component: BlogWebsite
 					}
 				]),
-				...withPrefix("multiplayer", [
+				...withPrefix("networking", [
 					{
 						path: "/hsmod",
 						component: BlogHsmod

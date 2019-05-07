@@ -107,7 +107,7 @@ export default class Home extends Vue {
 					icon: "link"
 				},
 				{
-					to: "/blog/hsmod",
+					to: "/blog/networking/hsmod",
 					name: "Blog",
 					icon: "link"
 				}
@@ -124,7 +124,7 @@ export default class Home extends Vue {
 					icon: "github"
 				},
 				{
-					to: "/blog/website",
+					to: "/blog/web/website",
 					name: "Blog",
 					icon: "link"
 				}

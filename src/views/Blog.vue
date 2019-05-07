@@ -43,7 +43,7 @@ export default class Home extends Vue {
 					title: "Counter-Bonus the CS:GO cheat"
 				},
 				{
-					to: "multiplayer/hsmod",
+					to: "networking/hsmod",
 					title: "Networking layer in HSMod"
 				},
 				{
