@@ -3,6 +3,7 @@
 		<h1 class="title is-3 has-text-centered">Counter-Bonus</h1>In this blog post, I'm going to describe how I made my CS:GO cheat (for
 		<b>educational</b> reasons only).
 		In the video (sorry for potato quality) you can see me using bhop and no recoil cheats.
+		Source code is absolute garbage, since it was my playground for learning C++
 		<a
 			class="button is-dark"
 		>
@@ -140,7 +141,7 @@
 			<img :src="require('@/assets/blog/counter-bonus00.webp')">
 		</div>
 		<!-- Afterword -->
-		<h1 class="title is-3 has-text-centered">Afterword</h1>If you want to dive into cheating (for educational purposes), feel free to use:
+		<h3 class="title is-3 has-text-centered">Afterword</h3>If you want to dive into cheating (for educational purposes), feel free to use:
 		<ul>
 			<li>
 				<a class="button is-dark" href="https://github.com/DarthTon/Blackbone">
@@ -164,18 +165,6 @@
 		</ul>Good luck!
 	</div>
 </template>
-
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import wip from "@/components/wip.vue";
-
-@Component({
-	components: {
-		wip
-	}
-})
-export default class CounterBonus extends Vue {}
-</script>
 
 <style lang="less" scoped>
 .video-wrapper {
