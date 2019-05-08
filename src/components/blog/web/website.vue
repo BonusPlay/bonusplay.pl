@@ -35,7 +35,6 @@
 		<h2 class="title is-2 has-text-centered">Backend</h2>Here comes the more interesting stuff. I wanted high performance, low cost backend.
 		Why?
 		<i>"Science isn't about why, it's about why not!"</i> ~ Cave Johnson.
-		<br><br><br>
 		<h4 class="title is-4">Reverse Proxy</h4>
 		First of all, I wanted to easily host multiple domains on same server. I quickly learned, that I'm going to need a reverse proxy.
 		I had previously used nginx, but I wanted something better. After more searching I've found and instantly fell in love with traefik.
@@ -85,7 +84,6 @@
 		</ul>
 		All 3 websites are actually hosted by same Go executable (with goroutines). The executable also has a very simple service file,
 		so it restarts on crash and autostarts on server boot.
-		<br><br>
 		<h4 class="title is-4">Database</h4>
 		For databases (unused by this project), I chose:
 		<ul>
@@ -97,7 +95,6 @@
 		a lot of time. Dovecot + Postfix. If you have a better way to do it, feel free to contact me. I'm always ready to learn something new!
 		<h1 class="title is-3 has-text-centered">Afterword</h1>
 		I hope this post inspired you to make your own website and will save you a lot of trouble on your way there.
-		<br><br>
 	</div>
 </template>
 
