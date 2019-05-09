@@ -8,13 +8,6 @@
 	</footer>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
-@Component
-export default class MyFooter extends Vue {}
-</script>
-
 <style scoped lang="less">
 .footer {
 	background-color: #6b1b80;

@@ -72,18 +72,5 @@ export default class App extends Vue {
 	.title {
 		color: whitesmoke;
 	}
-
-	.fade-enter-active,
-	.fade-leave-active {
-		transition-duration: 0.2s;
-		transition-property: height, opacity;
-		transition-timing-function: ease;
-		overflow: hidden;
-	}
-	
-	.fade-enter,
-	.fade-leave-to {
-		opacity: 0;
-	}
 }
 </style>
