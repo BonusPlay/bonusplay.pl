@@ -78,6 +78,18 @@ export default class Home extends Vue {
 			If you are an expert in this topic, these guides won't be of any use to you, but otherwise they should make a pretty good base to start off from.`,
 			articles: [
 				{
+					to: "networking/0",
+					title: "intro"
+				},
+				{
+					to: "networking/1",
+					title: "peer2peer vs client-server"
+				},
+				{
+					to: "networking/2",
+					title: "battle of protocols - TCP vs UDP"
+				},
+				{
 					to: "",
 					title: "coming soon!"
 				}

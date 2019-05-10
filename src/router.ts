@@ -17,6 +17,7 @@ import BlogCounterBonus from "./components/blog/reverse-engineering/counter-bonu
 import BlogHsmod from "./components/blog/networking/hsmod.vue";
 import BlogMultiplayer0 from "./components/blog/networking/0.vue";
 import BlogMultiplayer1 from "./components/blog/networking/1.vue";
+import BlogMultiplayer2 from "./components/blog/networking/2.vue";
 
 Vue.use(Router);
 
@@ -67,6 +68,10 @@ export default new Router({
 					{
 						path: "/1",
 						component: BlogMultiplayer1
+					},
+					{
+						path: "/2",
+						component: BlogMultiplayer2
 					}
 				])
 			]
