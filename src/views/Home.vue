@@ -6,7 +6,8 @@
 					<h1 class="title is-1">About me</h1>
 					<span class="has-text-justified">
 						<p>
-							My name is Adam Kliś, I'm currently {{getAge(new Date(1999, 1, 7))}}. I've been gaming since I was 6 and coding for over 7 years now.
+							My name is Adam Kliś, I'm currently {{getAge(new Date(1999, 1, 7))}}.
+							I've been gaming since I was 6 and coding for over 7 years now.
 							What's different about me, is that I learn by practice, trial-and-error.
 							That allows me to understand the code 'my way'.
 							I've started with Java, followed by C++, C, Android, C# and later webdev in order.
@@ -92,8 +93,8 @@ export default class Home extends Vue {
 	projects = [
 		{
 			title: "HSMod",
-			description:
-				"Hearthstone clone made in Unity3D. Fan made project to implement new game mechanics, cards and heroes to the game we all loved. Due to legal reasons we had to make it closed source and take down the website. Maybe in the future it will come back?",
+			description: `Hearthstone clone made in Unity3D. Fan made project to implement new game mechanics,
+			cards and heroes to the game we all loved. Due to legal reasons we had to make it closed source and take down the website. Maybe in the future it will come back?`,
 			links: [
 				{
 					to: "https://www.youtube.com/watch?v=0e4Du3KekDo",
@@ -101,8 +102,7 @@ export default class Home extends Vue {
 					icon: "youtube"
 				},
 				{
-					to:
-						"https://www.polygon.com/2017/4/13/15292266/hearthstone-new-class-classes-death-knight-demon-hunter-monk-arthas-hsmod-fan-game",
+					to:	"https://www.polygon.com/2017/4/13/15292266/hearthstone-new-class-classes-death-knight-demon-hunter-monk-arthas-hsmod-fan-game",
 					name: "Article",
 					icon: "link"
 				},
@@ -115,12 +115,16 @@ export default class Home extends Vue {
 		},
 		{
 			title: "bonusplay.pl",
-			description:
-				"This website and it's overcomplicated, over the top backend architecture.",
+			description: "This overcomplicated for no reason, SPA+PWA website and it's, over the top high performance backend architecture.",
 			links: [
 				{
-					to: "https://github.com/BonusPlay/bonusplay.pl",
-					name: "Source",
+					to: "https://github.com/BonusPlay/BonusPlay.pl-frontend",
+					name: "frontend",
+					icon: "github"
+				},
+				{
+					to: "https://github.com/BonusPlay/BonusPlay.pl-backend",
+					name: "backend",
 					icon: "github"
 				},
 				{
@@ -132,8 +136,7 @@ export default class Home extends Vue {
 		},
 		{
 			title: "CounterBonus",
-			description:
-				"A CS:GO cheat written along my adventures when I learned (or at the very least attempted) how to reverse engineer x86 assembly.",
+			description: "A CS:GO cheat written along my adventures when I learned (or at the very least attempted) how to reverse engineer x86 assembly.",
 			links: [
 				{
 					to: "https://github.com/BonusPlay/CounterBonus",
