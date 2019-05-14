@@ -108,7 +108,7 @@ export default class Home extends Vue {
 	}
 
 	@media @tablet {
-		margin: 0.5vh 2.5vw;
+		margin: 2vh 2.5vw;
 		width: calc((100% - 2.5vw - 5vw * 2) / 2);
 
 		// margin between items except last
@@ -118,7 +118,7 @@ export default class Home extends Vue {
 	}
 
 	@media @mobile {
-		margin: 0.5vh 5vw;
+		margin: 2vh 5vw;
 		width: 100%;
 	}
 
