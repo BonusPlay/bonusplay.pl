@@ -13,14 +13,16 @@
 					class="message is-dark blog-item is-flex-col"
 				>
 					<div class="message-header">{{ section.title }}</div>
-					{{ section.subtitle }}
-					<br>
-					<router-link
-						v-for="article in section.articles"
-						:key="article.title"
-						:to="`/blog/${article.to}`"
-						class="button is-dark"
-					>{{ article.title }}</router-link>
+					<div class="message-body">
+						{{ section.subtitle }}
+						<br>
+						<router-link
+							v-for="article in section.articles"
+							:key="article.title"
+							:to="`/blog/${article.to}`"
+							class="button is-dark"
+						>{{ article.title }}</router-link>
+					</div>
 				</article>
 			</div>
 		</section>
@@ -36,7 +38,8 @@ export default class Home extends Vue {
 	sections = [
 		{
 			title: "Random projects",
-			subtitle: "Random, unrelated articles about (un)finished projects from wide range of topics.",
+			subtitle:
+				"Random, unrelated articles about (un)finished projects from wide range of topics.",
 			articles: [
 				{
 					to: "reverse-engineering/counter-bonus",
@@ -54,7 +57,8 @@ export default class Home extends Vue {
 		},
 		{
 			title: "Reverse Engineering",
-			subtitle: "A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
+			subtitle:
+				"A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
 			articles: [
 				{
 					to: "",
@@ -64,7 +68,8 @@ export default class Home extends Vue {
 		},
 		{
 			title: "Webdev",
-			subtitle: "My adventures in webdev, how it sucks and how to make it suck less.",
+			subtitle:
+				"My adventures in webdev, how it sucks and how to make it suck less.",
 			articles: [
 				{
 					to: "",
@@ -85,7 +90,8 @@ export default class Home extends Vue {
 		},
 		{
 			title: "Random",
-			subtitle: "Everything that I wanted to write about, but didn't fit into other categories",
+			subtitle:
+				"Everything that I wanted to write about, but didn't fit into other categories",
 			articles: [
 				{
 					to: "random/git-deploy",
@@ -107,6 +113,10 @@ export default class Home extends Vue {
 .message.is-dark {
 	background-color: transparent;
 	border: 1px solid @bg-1;
+	
+	.message-body {
+		color: @text;
+	}
 
 	@media @desktop {
 		width: calc((100% - 2.5vw * 2) / 3);
@@ -133,7 +143,7 @@ export default class Home extends Vue {
 	}
 
 	.button {
-		margin: 0.5vh 1vw;
+		margin: 0.5vh 0;
 	}
 }
 
