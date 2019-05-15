@@ -5,7 +5,7 @@
 		Here is a screenshot of my server running 3 different domains, 2 databases, mail server and a few more things that I forgot about.
 		I think that ~1% of CPU usage at idle and 155MB of RAM for everything combined (including OS!) is a really good result.
 		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/website00.webp')"/>
+			<img :src="require('@/assets/blog/website00.webp')">
 			<img :src="require('@/assets/power.jpg')">
 		</div>
 		<h1 class="title is-3 has-text-centered">Frontend</h1>Frontend is written in Vue. The reasony I prefer Vue over React is that it separates all 3
@@ -35,9 +35,10 @@
 		<h2 class="title is-2 has-text-centered">Backend</h2>Here comes the more interesting stuff. I wanted high performance, low cost backend.
 		Why?
 		<i>"Science isn't about why, it's about why not!"</i> ~ Cave Johnson.
-		<br><br><br>
-		<h4 class="title is-4">Reverse Proxy</h4>
-		First of all, I wanted to easily host multiple domains on same server. I quickly learned, that I'm going to need a reverse proxy.
+		<br>
+		<br>
+		<br>
+		<h4 class="title is-4">Reverse Proxy</h4>First of all, I wanted to easily host multiple domains on same server. I quickly learned, that I'm going to need a reverse proxy.
 		I had previously used nginx, but I wanted something better. After more searching I've found and instantly fell in love with traefik.
 		A high performance, low cost reverse proxy written in Go. It even comes with a load balancer! I'm running traefik dashboard on port that's blocked
 		from going outside, but I can connect to it with a simple ssh tunnel (
@@ -55,8 +56,7 @@
 		<div class="has-text-centered">
 			<img :src="require('@/assets/icons-tech/letsencrypt.svg')">
 		</div>
-		<h4 class="title is-4">Web Server</h4>
-		So, we've got reverse proxy and load balancer with SSL, but we still haven't served a single file to user.
+		<h4 class="title is-4">Web Server</h4>So, we've got reverse proxy and load balancer with SSL, but we still haven't served a single file to user.
 		I was debating what to use and my thought process looked something like this:
 		<ul>
 			<li>Java Spring (kotlin) - too heavy</li>
@@ -82,22 +82,20 @@
 			<li>
 				<code>api.bonusplay.pl</code> - API. Used by released applications.
 			</li>
-		</ul>
-		All 3 websites are actually hosted by same Go executable (with goroutines). The executable also has a very simple service file,
+		</ul>All 3 websites are actually hosted by same Go executable (with goroutines). The executable also has a very simple service file,
 		so it restarts on crash and autostarts on server boot.
-		<br><br>
-		<h4 class="title is-4">Database</h4>
-		For databases (unused by this project), I chose:
+		<br>
+		<br>
+		<h4 class="title is-4">Database</h4>For databases (unused by this project), I chose:
 		<ul>
 			<li>Redis - great cache</li>
 			<li>MariaDB - better MySQL</li>
 		</ul>
-		<h4 class="title is-4">Mail server</h4>
-		Auch. This bit here took me longest to setup and figure out. No clever tricks, just a ton of guides, even more documentation and
+		<h4 class="title is-4">Mail server</h4>Auch. This bit here took me longest to setup and figure out. No clever tricks, just a ton of guides, even more documentation and
 		a lot of time. Dovecot + Postfix. If you have a better way to do it, feel free to contact me. I'm always ready to learn something new!
-		<h1 class="title is-3 has-text-centered">Afterword</h1>
-		I hope this post inspired you to make your own website and will save you a lot of trouble on your way there.
-		<br><br>
+		<h1 class="title is-3 has-text-centered">Deployment</h1>I have separate post about my way of deploying website, which you can read here:
+		<router-link to="/blog/random/git-deploy" class="button is-dark">Git-Deploy</router-link>
+		<h1 class="title is-3 has-text-centered">Afterword</h1>I hope this post inspired you to make your own website and will save you a lot of trouble on your way there.
 	</div>
 </template>
 
