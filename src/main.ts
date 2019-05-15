@@ -14,6 +14,10 @@ Vue.use(KonamiCode, () => {
 	new Audio(require("@/assets/snake.webm")).play();
 });
 
+import HighlightJS from "./highlightjs";
+import 'highlight.js/styles/default.css';
+Vue.use(HighlightJS);
+
 Vue.config.productionTip = false;
 
 new Vue({

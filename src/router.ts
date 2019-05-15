@@ -18,6 +18,9 @@ import BlogHsmod from "./components/blog/networking/hsmod.vue";
 import BlogMultiplayer0 from "./components/blog/networking/0.vue";
 import BlogMultiplayer1 from "./components/blog/networking/1.vue";
 
+// random
+import BlogGitDeploy from "./components/blog/random/git-deploy.vue";
+
 Vue.use(Router);
 
 function withPrefix(prefix: string, routes: RouteConfig[]): RouteConfig[] {
@@ -67,6 +70,12 @@ export default new Router({
 					{
 						path: "/1",
 						component: BlogMultiplayer1
+					}
+				]),
+				...withPrefix("random", [
+					{
+						path: "/git-deploy",
+						component: BlogGitDeploy
 					}
 				])
 			]

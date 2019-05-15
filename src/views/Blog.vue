@@ -6,7 +6,7 @@
 			</div>
 		</section>
 		<section class="container">
-			<div class="is-flex-wrap is-space-between">
+			<div class="is-flex-wrap blog-wrapper">
 				<article
 					v-for="section in sections"
 					:key="section.title"
@@ -82,6 +82,16 @@ export default class Home extends Vue {
 					title: "coming soon!"
 				}
 			]
+		},
+		{
+			title: "Random",
+			subtitle: "Everything that I wanted to write about, but didn't fit into other categories",
+			articles: [
+				{
+					to: "random/git-deploy",
+					title: "Git-Deploy"
+				}
+			]
 		}
 	];
 }
@@ -125,5 +135,9 @@ export default class Home extends Vue {
 	.button {
 		margin: 0.5vh 1vw;
 	}
+}
+
+.blog-wrapper {
+	justify-content: center;
 }
 </style>

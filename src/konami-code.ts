@@ -1,3 +1,4 @@
+// based on https://github.com/azzra/vue-konami-code
 import Vue from "vue";
 
 export default {
