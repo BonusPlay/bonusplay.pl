@@ -24,6 +24,12 @@
 		<pre v-highlightjs><code class="bash">
 #!/bin/sh
 
+# colors
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+YELLOW="\033[1;33m"
+NOCOLOR="\033[0m"
+
 # temp folder used for building
 TEMP="/tmp/{folder}"
 
@@ -31,20 +37,23 @@ TEMP="/tmp/{folder}"
 REPO="{repo}"
 
 # fetches branch name
-branch=$(git --git-dir=$REPO branch | grep '*' | sed 's/* //' | tr '_' '/')
+while read oldrev newrev refname
+branch=$(git rev-parse --symbolic --abbrev-ref $refname 2>/dev/null)
 
 if [ "$branch" == "master" ]; then
 	TARGET="{prod_folder}"
+	echo -e "${YELLOW}Pushing to production.${NOCOLOR}"
 elif [ "$branch" == "dev" ]; then
 	TARGET="{dev_folder}"
+	echo -e "${YELLOW}Pushing to development.${NOCOLOR}"
 else
-	echo "Not master/develop branch, ignoring."
+	echo -e "${YELLOW}Not master/develop branch, ignoring.${NOCOLOR}"
 	exit 1
 fi
 
 mkdir -p $TEMP
 cd $TEMP
-git --work-tree=$TEMP --git-dir=$REPO checkout -f
+git --work-tree=$TEMP --git-dir=$REPO checkout -f $branch
 
 # execute all your build scripts here
 # example for my website:
