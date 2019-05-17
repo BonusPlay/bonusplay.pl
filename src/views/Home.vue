@@ -48,11 +48,11 @@
 					<div class="links">
 						<div v-for="link in item.links" :key="link.to">
 							<router-link v-if="link.to[0] === '/'" :to="link.to" class="button is-dark is-spaced">
-								<b-icon :icon="link.icon"/>
+								<b-icon :icon="link.icon" :pack="link.pack"/>
 								<span>{{ link.name }}</span>
 							</router-link>
 							<a v-else :href="link.to" class="button is-dark is-spaced">
-								<b-icon :icon="link.icon"/>
+								<b-icon :icon="link.icon" :pack="link.pack"/>
 								<span>{{ link.name }}</span>
 							</a>
 						</div>
@@ -99,17 +99,20 @@ export default class Home extends Vue {
 				{
 					to: "https://www.youtube.com/watch?v=0e4Du3KekDo",
 					name: "YouTube",
-					icon: "youtube"
+					icon: "youtube",
+					pack: "fab"
 				},
 				{
 					to:	"https://www.polygon.com/2017/4/13/15292266/hearthstone-new-class-classes-death-knight-demon-hunter-monk-arthas-hsmod-fan-game",
 					name: "Article",
-					icon: "link"
+					icon: "link",
+					pack: "fas"
 				},
 				{
 					to: "/blog/networking/hsmod",
 					name: "Blog",
-					icon: "link"
+					icon: "link",
+					pack: "fas"
 				}
 			]
 		},
@@ -120,17 +123,20 @@ export default class Home extends Vue {
 				{
 					to: "https://github.com/BonusPlay/BonusPlay.pl-frontend",
 					name: "frontend",
-					icon: "github"
+					icon: "github",
+					pack: "fab"
 				},
 				{
 					to: "https://github.com/BonusPlay/BonusPlay.pl-backend",
 					name: "backend",
-					icon: "github"
+					icon: "github",
+					pack: "fab"
 				},
 				{
 					to: "/blog/web/website",
 					name: "Blog",
-					icon: "link"
+					icon: "link",
+					pack: "fas"
 				}
 			]
 		},
@@ -141,12 +147,14 @@ export default class Home extends Vue {
 				{
 					to: "https://github.com/BonusPlay/CounterBonus",
 					name: "Source",
-					icon: "github"
+					icon: "github",
+					pack: "fab"
 				},
 				{
 					to: "/blog/reverse-engineering/counter-bonus",
 					name: "article",
-					icon: "link"
+					icon: "link",
+					pack: "fas"
 				}
 			]
 		}

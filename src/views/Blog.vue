@@ -13,7 +13,7 @@
 					class="message is-dark blog-item is-flex-col"
 				>
 					<div class="message-header">{{ section.title }}</div>
-					<div class="message-body">
+					<div class="message-body is-flex-col is-align-center">
 						{{ section.subtitle }}
 						<br>
 						<router-link
@@ -38,8 +38,7 @@ export default class Home extends Vue {
 	sections = [
 		{
 			title: "Random projects",
-			subtitle:
-				"Random, unrelated articles about (un)finished projects from wide range of topics.",
+			subtitle: "Random, unrelated articles about (un)finished projects from wide range of topics.",
 			articles: [
 				{
 					to: "reverse-engineering/counter-bonus",
@@ -57,8 +56,7 @@ export default class Home extends Vue {
 		},
 		{
 			title: "Reverse Engineering",
-			subtitle:
-				"A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
+			subtitle: "A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
 			articles: [
 				{
 					to: "",
@@ -68,8 +66,7 @@ export default class Home extends Vue {
 		},
 		{
 			title: "Webdev",
-			subtitle:
-				"My adventures in webdev, how it sucks and how to make it suck less.",
+			subtitle: "My adventures in webdev, how it sucks and how to make it suck less.",
 			articles: [
 				{
 					to: "",
@@ -90,12 +87,15 @@ export default class Home extends Vue {
 		},
 		{
 			title: "Random",
-			subtitle:
-				"Everything that I wanted to write about, but didn't fit into other categories",
+			subtitle: "Everything that I wanted to write about, but didn't fit into other categories",
 			articles: [
 				{
 					to: "random/git-deploy",
 					title: "Git-Deploy"
+				},
+				{
+					to: "random/mail-server",
+					title: "Mail server with postfix + dovecot/cyrus"
 				}
 			]
 		}
@@ -149,5 +149,6 @@ export default class Home extends Vue {
 
 .blog-wrapper {
 	justify-content: center;
+	max-width: 100vw;
 }
 </style>

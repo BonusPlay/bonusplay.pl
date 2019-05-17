@@ -2,7 +2,7 @@
 	<nav class="navbar" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
 			<div @click="nav('/')" class="navbar-item">
-				<b-icon icon="home">Home</b-icon>
+				<b-icon icon="home" pack="fas">Home</b-icon>
 			</div>
 			<a
 				@click="expand = !expand"
@@ -41,7 +41,7 @@
 			</div>
 			<div class="navbar-end">
 				<a v-for="item in right" :key="item.name" :href="item.to" class="navbar-item">
-					<b-icon :icon="item.icon"/>
+					<b-icon :icon="item.icon" :pack="item.pack" />
 					<span>{{ item.name }}</span>
 				</a>
 			</div>
@@ -59,10 +59,11 @@ export default class Navbar extends Vue {
 	left = [{ name: "Blog", to: "/blog" }, { name: "API", to: "/api" }];
 
 	right = [
-		{ name: "Github", to: "/github", icon: "github" },
-		{ name: "Facebook", to: "/facebook", icon: "github" },
-		{ name: "Discord", to: "/discord", icon: "discord" },
-		{ name: "YouTube", to: "/youtube", icon: "youtube" }
+		{ name: "Github", to: "/github", icon: "github", pack: "fab" },
+		{ name: "Email", to: "mailto:root@bonusplay.pl", icon: "envelope", pack: "fas" },
+		{ name: "Facebook", to: "/facebook", icon: "facebook", pack: "fab" },
+		{ name: "Discord", to: "/discord", icon: "discord", pack: "fab" },
+		{ name: "YouTube", to: "/youtube", icon: "youtube", pack: "fab" }
 	];
 
 	nav(path: string) {
@@ -116,6 +117,12 @@ export default class Navbar extends Vue {
 
 		@media @desktop {
 			background-color: @primary;
+		}
+		
+		.navbar-end {
+			.icon {
+				margin-right: 5px;
+			}
 		}
 	}
 

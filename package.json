@@ -18,16 +18,22 @@
     "vuex-module-decorators": "^0.9.8"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-brands-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
     "@types/highlight.js": "^9.12.3",
+    "@types/prismjs": "^1.16.0",
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-pwa": "^3.6.0",
     "@vue/cli-plugin-typescript": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
+    "babel-plugin-prismjs": "^1.0.2",
     "compression-webpack-plugin": "^2.0.0",
-    "font-awesome": "^4.7.0",
     "ifdef-loader": "^2.1.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "prismjs": "^1.16.0",
     "style-resources-loader": "^1.2.1",
     "typescript": "^3.4.4",
     "vue-template-compiler": "^2.6.10"

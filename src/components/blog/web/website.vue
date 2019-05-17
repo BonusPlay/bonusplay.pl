@@ -36,8 +36,6 @@
 		Why?
 		<i>"Science isn't about why, it's about why not!"</i> ~ Cave Johnson.
 		<br>
-		<br>
-		<br>
 		<h4 class="title is-4">Reverse Proxy</h4>First of all, I wanted to easily host multiple domains on same server. I quickly learned, that I'm going to need a reverse proxy.
 		I had previously used nginx, but I wanted something better. After more searching I've found and instantly fell in love with traefik.
 		A high performance, low cost reverse proxy written in Go. It even comes with a load balancer! I'm running traefik dashboard on port that's blocked
@@ -84,15 +82,17 @@
 			</li>
 		</ul>All 3 websites are actually hosted by same Go executable (with goroutines). The executable also has a very simple service file,
 		so it restarts on crash and autostarts on server boot.
-		<br>
-		<br>
 		<h4 class="title is-4">Database</h4>For databases (unused by this project), I chose:
 		<ul>
 			<li>Redis - great cache</li>
 			<li>MariaDB - better MySQL</li>
 		</ul>
-		<h4 class="title is-4">Mail server</h4>Auch. This bit here took me longest to setup and figure out. No clever tricks, just a ton of guides, even more documentation and
-		a lot of time. Dovecot + Postfix. If you have a better way to do it, feel free to contact me. I'm always ready to learn something new!
+		<h4 class="title is-4">Mail server</h4>
+		<s>Auch. This bit here took me longest to setup and figure out. No clever tricks, just a ton of guides, even more documentation and
+		a lot of time. Dovecot + Postfix. If you have a better way to do it, feel free to contact me. I'm always ready to learn something new!</s>
+		<br>
+		I moved to new configuration, which you can read about here:
+		<router-link to="/blog/random/mail-server" class="button is-dark">Mail-server</router-link>.
 		<h1 class="title is-3 has-text-centered">Deployment</h1>I have separate post about my way of deploying website, which you can read here:
 		<router-link to="/blog/random/git-deploy" class="button is-dark">Git-Deploy</router-link>
 		<h1 class="title is-3 has-text-centered">Afterword</h1>I hope this post inspired you to make your own website and will save you a lot of trouble on your way there.

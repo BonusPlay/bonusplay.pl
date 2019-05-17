@@ -4,19 +4,24 @@ import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faGithub, faDiscord, faFacebook, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faHome, faEnvelope, faLink, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+library.add(faGithub, faDiscord, faFacebook, faYoutube, faHome, faEnvelope, faLink, faArrowLeft);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
-import "font-awesome/css/font-awesome.css";
-Vue.use(Buefy, { defaultIconPack: "fa" });
+Vue.use(Buefy, { defaultIconComponent: "font-awesome-icon" });
 
 import KonamiCode from "./konami-code";
 Vue.use(KonamiCode, () => {
 	new Audio(require("@/assets/snake.webm")).play();
 });
 
-import HighlightJS from "./highlightjs";
-import 'highlight.js/styles/default.css';
-Vue.use(HighlightJS);
+import Prism from "prismjs";
+Prism.highlightAll();
 
 Vue.config.productionTip = false;
 

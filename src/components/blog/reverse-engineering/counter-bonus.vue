@@ -6,7 +6,7 @@
 		<a
 			class="button is-dark"
 		>
-			<b-icon icon="github"/>
+			<b-icon icon="github" pack="fab"/>
 			<span>source</span>
 		</a>
 		<div class="has-text-centered video-wrapper">
@@ -144,19 +144,19 @@
 		<ul>
 			<li>
 				<a class="button is-dark" href="https://github.com/DarthTon/Blackbone">
-					<b-icon icon="github"/>
+					<b-icon icon="github" pack="fab"/>
 					<span>Blackbone</span>
 				</a> - windows memory hacking library. It should provide you with plenty of boilerplate and ideas.
 			</li>
 			<li>
 				<a class="button is-dark" href="https://ghidra-sre.org">
-					<b-icon icon="link"/>
+					<b-icon icon="link" pack="fab"/>
 					<span>Ghidra</span>
 				</a> - <b>free</b> IDA Pro alternative (which is SUPER expensive). It even has a decompiler that works!
 			</li>
 			<li>
 				<a class="button is-dark" href="https://www.unknowncheats.me">
-					<b-icon icon="link"/>
+					<b-icon icon="link" pack="fab"/>
 					<span>UnknownCheats</span>
 				</a> - don't be scared to look into the interwebs when you get stuck. There are plenty of threads at
 				that can/will help you a lot.
