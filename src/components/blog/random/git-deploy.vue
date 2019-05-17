@@ -21,14 +21,39 @@
 			<li>create a file <code>{folder}/hooks/post-receive</code> - this is a bash script, that will be executed whenever you push</li>
 		</ul>
 		My hook looks like this:
-		<pre v-highlightjs><code class="bash">
-#!/bin/sh
+		<pre class="line-numbers" data-start="0"><code class="lang-bash">{{ code }}</code></pre>
+		<h4 class="title is-4">Client side</h4>
+		Here, the <code>{folder}</code> is an absolute path of folder created in previous steps.
+		<ul>
+			<li><code>git remote add deploy ssh://{user}@{ip}/{folder}</code> - if you want to have a separate remote</li>
+			<li><code>git remote add-url {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote</li>
+		</ul>
+		<!-- Done! -->
+		<h1 class="title is-3 has-text-centered">Done!</h1>
+		Nothing more. Enjoy your easy deploys!
+		<div class="has-text-centered">
+			<img :src="require('@/assets/blog/git-deploy01.webp')">
+		</div>
+	</div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import Prism from "prismjs";
+
+@Component({
+	mounted() {
+		Prism.highlightAll();
+	}
+})
+export default class extends Vue {
+	code = `#!/bin/sh
 
 # colors
-GREEN="\033[1;32m"
-RED="\033[1;31m"
-YELLOW="\033[1;33m"
-NOCOLOR="\033[0m"
+GREEN="\\033[1;32m"
+RED="\\033[1;31m"
+YELLOW="\\033[1;33m"
+NOCOLOR="\\033[0m"
 
 # temp folder used for building
 TEMP="/tmp/{folder}"
@@ -42,12 +67,12 @@ branch=$(git rev-parse --symbolic --abbrev-ref $refname 2>/dev/null)
 
 if [ "$branch" == "master" ]; then
 	TARGET="{prod_folder}"
-	echo -e "${YELLOW}Pushing to production.${NOCOLOR}"
+	echo -e "\${YELLOW}Pushing to production.\${NOCOLOR}"
 elif [ "$branch" == "dev" ]; then
 	TARGET="{dev_folder}"
-	echo -e "${YELLOW}Pushing to development.${NOCOLOR}"
+	echo -e "\${YELLOW}Pushing to development.\${NOCOLOR}"
 else
-	echo -e "${YELLOW}Not master/develop branch, ignoring.${NOCOLOR}"
+	echo -e "\${YELLOW}Not master/develop branch, ignoring.\${NOCOLOR}"
 	exit 1
 fi
 
@@ -66,19 +91,6 @@ rm -rf $TARGET/*
 mv ./dist/* $TARGET/
 
 # cleanup
-rm -rf $TEMP
-		</code></pre>
-		<h4 class="title is-4">Client side</h4>
-		Here, the <code>{folder}</code> is an absolute path of folder created in previous steps.
-		<ul>
-			<li><code>git remote add deploy ssh://{user}@{ip}/{folder}</code> - if you want to have a separate remote</li>
-			<li><code>git remote add-url {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote</li>
-		</ul>
-		<!-- Done! -->
-		<h1 class="title is-3 has-text-centered">Done!</h1>
-		Nothing more. Enjoy your easy deploys!
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/git-deploy01.webp')">
-		</div>
-	</div>
-</template>
+rm -rf $TEMP`
+}
+</script>
