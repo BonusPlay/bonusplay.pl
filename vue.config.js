@@ -63,7 +63,8 @@ module.exports = {
 		themeColor: "#6b1b80",
 		msTileColor: "#6b1b80",
 		workboxOptions: {
-			skipWaiting: true
+			skipWaiting: true,
+			clientsClaim: true
 		}
 	}
 };
