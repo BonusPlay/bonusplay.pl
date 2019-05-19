@@ -4,16 +4,20 @@ import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faGithub, faDiscord, faFacebook, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faHome, faEnvelope, faLink, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-library.add(faGithub, faDiscord, faFacebook, faYoutube, faHome, faEnvelope, faLink, faArrowLeft);
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+import "@fortawesome/fontawesome-free/css/all.css";
 
-import Buefy from "buefy";
-import "buefy/dist/buefy.css";
-Vue.use(Buefy, { defaultIconComponent: "font-awesome-icon" });
+import Vuetify from "vuetify";
+import Vcolors from "vuetify/es5/util/colors";
+import "vuetify/dist/vuetify.min.css";
+Vue.use(Vuetify, {
+	theme: {
+		primary: Vcolors.purple,
+		secondary: Vcolors.grey.darken1,
+		accent: colors.shades.black,
+		error: colors.red.accent3
+	},
+	iconfont: "fa"
+});
 
 import KonamiCode from "./konami-code";
 Vue.use(KonamiCode, () => {
@@ -21,6 +25,7 @@ Vue.use(KonamiCode, () => {
 });
 
 import Prism from "prismjs";
+import colors from "vuetify/es5/util/colors";
 Prism.highlightAll();
 
 Vue.config.productionTip = false;
