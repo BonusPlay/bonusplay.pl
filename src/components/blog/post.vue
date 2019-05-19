@@ -1,36 +1,19 @@
 <template>
-	<section class="section">
-		<div class="container has-text-left blog-post">
-			<button @click="$router.go(-1)" class="button is-dark">
-				<b-icon icon="arrow-left" pack="fas"/>Back
-			</button>
-			<router-view/>
-		</div>
-	</section>
+	<v-container>
+		<v-btn
+			color="purple darken-2"
+            small
+            top
+            left
+            fab
+			id="back"
+			@click="$router.go(-1)"
+        >
+			<v-icon>fas fa-arrow-left</v-icon>
+		</v-btn>
+		<router-view class="px-2"/>
+	</v-container>
 </template>
-
-<style lang="less">
-.blog-post {
-	h4.title.is-4 {
-		margin-top: 1.5rem;
-	}
-
-	.notification {
-		background: transparent;
-		border: 1px solid @bg-1;
-		max-width: 100vw;
-
-		@media @mobile {
-			padding: 1rem 0;
-		}
-	}
-
-	// cap prismjs, so it doesn't overflow on mobile
-	.code-toolbar {
-		max-width: 100vw;
-	}
-}
-</style>
 
 <style lang="less" scoped>
 .blog-post {
@@ -44,7 +27,7 @@
 	}
 }
 
-.button .icon:first-child:last-child {
-	margin-right: 0;
+#back {
+	position: absolute;
 }
 </style>

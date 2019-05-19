@@ -1,33 +1,35 @@
 <template>
-	<div class="content">
-		<section class="hero">
-			<div class="hero-body">
-				<div class="title">Blog about everything and nothing</div>
-			</div>
-		</section>
-		<section class="container">
-			<div class="is-flex-wrap blog-wrapper">
-				<article
-					v-for="section in sections"
-					:key="section.title"
-					class="message is-dark blog-item is-flex-col"
-				>
-					<div class="message-header">{{ section.title }}</div>
-					<div class="message-body is-flex-col is-align-center">
-						{{ section.subtitle }}
-						<br>
-						<router-link
-							v-for="article in section.articles"
-							:key="article.title"
-							:to="`/blog/${article.to}`"
-							class="button is-dark"
-						>{{ article.title }}</router-link>
-					</div>
-				</article>
-			</div>
-		</section>
-		<router-view/>
-	</div>
+	<v-container>
+		<v-layout row wrap fill-height align-center justify-space-around>
+			<v-flex v-for="section in sections" :key="section.title" xs12 sm6 md4 pa-1>
+				<v-card>
+					<v-card-title primary-title>
+						<h3 class="headline mb-0">{{ section.title }}</h3>
+						<span class="text-xs-justify">{{ section.subtitle }}</span>
+					</v-card-title>
+
+					<v-container pa-0>
+						<v-layout align-space-around justify-space-between column fill-height>
+							<v-flex
+								v-for="article in section.articles"
+								:key="article.title"
+								xs12
+							>
+								<v-btn
+									:to="`/blog/${article.to}`"
+									block
+								>
+									<span class="text-wrap">
+										{{article.title}}
+									</span>
+								</v-btn>
+							</v-flex>
+						</v-layout>
+					</v-container>
+				</v-card>
+			</v-flex>
+		</v-layout>
+	</v-container>
 </template>
 
 <script lang="ts">
@@ -38,7 +40,8 @@ export default class Home extends Vue {
 	sections = [
 		{
 			title: "Random projects",
-			subtitle: "Random, unrelated articles about (un)finished projects from wide range of topics.",
+			subtitle:
+				"Random, unrelated articles about (un)finished projects from wide range of topics.",
 			articles: [
 				{
 					to: "reverse-engineering/counter-bonus",
@@ -55,26 +58,6 @@ export default class Home extends Vue {
 			]
 		},
 		{
-			title: "Reverse Engineering",
-			subtitle: "A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
-			articles: [
-				{
-					to: "",
-					title: "coming soon!"
-				}
-			]
-		},
-		{
-			title: "Webdev",
-			subtitle: "My adventures in webdev, how it sucks and how to make it suck less.",
-			articles: [
-				{
-					to: "",
-					title: "coming soon!"
-				}
-			]
-		},
-		{
 			title: "Networking in Video Games",
 			subtitle: `This is a series of guides, that will teach you quite a lot about networking in video games.
 			If you are an expert in this topic, these guides won't be of any use to you, but otherwise they should make a pretty good base to start off from.`,
@@ -86,8 +69,31 @@ export default class Home extends Vue {
 			]
 		},
 		{
+			title: "Reverse Engineering",
+			subtitle:
+				"A series of articles about the art of reverse engineering with the goal of teaching the very first steps. They require programming experience prior to reading.",
+			articles: [
+				{
+					to: "",
+					title: "coming soon!"
+				}
+			]
+		},
+		{
+			title: "Webdev",
+			subtitle:
+				"My adventures in webdev, how it sucks and how to make it suck less.",
+			articles: [
+				{
+					to: "",
+					title: "coming soon!"
+				}
+			]
+		},
+		{
 			title: "Random",
-			subtitle: "Everything that I wanted to write about, but didn't fit into other categories",
+			subtitle:
+				"Everything that I wanted to write about, but didn't fit into other categories",
 			articles: [
 				{
 					to: "random/git-deploy",
@@ -104,51 +110,10 @@ export default class Home extends Vue {
 </script>
 
 <style lang="less" scoped>
-.hero {
-	margin-top: 10vh;
-	margin-bottom: 2vh;
-	background-color: @primary;
-}
-
-.message.is-dark {
-	background-color: transparent;
-	border: 1px solid @bg-1;
-	
-	.message-body {
-		color: @text;
-	}
-
-	@media @desktop {
-		width: calc((100% - 2.5vw * 2) / 3);
-
-		// margin between items except last
-		&:not(:nth-child(3n)) {
-			margin-right: 2.5vw;
-		}
-	}
-
-	@media @tablet {
-		margin: 2vh 2.5vw;
-		width: calc((100% - 2.5vw - 5vw * 2) / 2);
-
-		// margin between items except last
-		&:not(:nth-child(2n)) {
-			margin-right: 2.5vw;
-		}
-	}
-
-	@media @mobile {
-		margin: 2vh 5vw;
-		width: 100%;
-	}
-
-	.button {
-		margin: 0.5vh 0;
-	}
-}
-
-.blog-wrapper {
-	justify-content: center;
-	max-width: 100vw;
+// fixes button size with wrapped text
+.v-btn {
+	height: auto;
+	padding: 5px 16px;
+	min-height: 36px;
 }
 </style>

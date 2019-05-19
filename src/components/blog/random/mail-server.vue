@@ -1,119 +1,197 @@
 <template>
-	<div class="has-text-justified content">
-		<h1 class="title is-3 has-text-centered">Mail deploy</h1>In this blog post, I'm going to describe how I setup mail server on my server.
-		I want to be able to send and receive emails from domains I own (e.g. test@bonusplay.pl). Which means multiple users on multiple domains.
-		I advise you to read
-		<a
-			href="https://wiki.archlinux.org/index.php/Mail_server"
-		>this page on arch wiki</a>. It's short, but it will help you understand everything.
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/mail-server00.webp')">
-		</div>
-		<!-- postfix + dovecot -->
-		<h3 class="title is-3 has-text-centered">Attempt #1, postfix + dovecot</h3>So, at start I went with the most simple postfix + dovecot setup.
-		Tbh, I just followed
-		<a href="https://www.linode.com/docs/email/postfix/email-with-postfix-dovecot-and-mariadb-on-centos-7/">this</a>
-		amazing guide. I got it working pretty quickly.
-		Remember to send some emails to your friends and tell them to mark it "not spam", since your domain	will most likely be marked as spam.
-		<br>
-		<br>
-		<i>fast forward a month...</i>
-		<br>
-		<br>
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/mail-server01.webp')">
-		</div>
-		Sending emails works perfectly, but gmail fetches POP3 emails once per hour?! WTF?!
-		Ok, so we need to change our strategy...
+	<v-layout column text-xs-justify>
+		<!-- Goal -->
+		<v-flex>
+			<h1 class="display-3 text-xs-center">Mail server</h1>In this blog post, I'm going to describe how I setup mail server on my server.
+			I want to be able to send and receive emails from domains I own (e.g. test@bonusplay.pl). Which means multiple users on multiple domains.
+			I advise you to read <a href="https://wiki.archlinux.org/index.php/Mail_server">this page on arch wiki</a>.
+			It's short, but it will help you understand everything.
+			<v-img :src="require('@/assets/blog/mail-server00.webp')" contain max-height="30vh"/>
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
+		<!-- Postfix + Dovecot -->
+		<v-flex>
+			<h2 class="display-2 text-xs-center">Attempt #1, postfix + dovecot</h2>So, at start I went with the most simple postfix + dovecot setup.
+			Tbh, I just followed
+			<a
+				href="https://www.linode.com/docs/email/postfix/email-with-postfix-dovecot-and-mariadb-on-centos-7/"
+			>this</a>
+			amazing guide. I got it working pretty quickly.
+			Remember to send some emails to your friends and tell them to mark it "not spam", since your domain will most likely be marked as spam.
+			<br>
+			<br>
+			<i>fast forward a month...</i>
+			<br>
+			<br>
+			<div class="has-text-centered">
+				<v-img :src="require('@/assets/blog/mail-server01.webp')" contain max-height="10vh"/>
+			</div>Sending emails works perfectly, but gmail fetches POP3 emails once per hour?! WTF?!
+			Ok, so we need to change our strategy...
+		</v-flex>
+
 		<!-- idea -->
-		<h3 class="title is-3 has-text-centered">Idea</h3>
-		The one who gave me the idea is <i>Mateusz Maciejewski</i>, so kudos to him. Sending emails works just fine, so we don't have to touch this part.
-		We only need to change how we receive emails. What if we don't store emails, but auto-forward them to designated email address?
-		It removes waiting time, since email will be instantly forwarded, instead of being received, stored and then checked by gmail servers.
-		<br>
-		If so, why do we even need dovecot? Turns out, we need it for authentication. Then why did I switch from dovecot to cyrus?
-		Amount of config dovecot needs is incredible, also <a href="https://serverfault.com/a/137007">this</a> SO answer helped me move.
+		<v-flex>
+			<h3 class="display-1 text-xs-center">Idea</h3>The one who gave me the idea is
+			<i>Mateusz Maciejewski</i>, so kudos to him. Sending emails works just fine, so we don't have to touch this part.
+			We only need to change how we receive emails. What if we don't store emails, but auto-forward them to designated email address?
+			It removes waiting time, since email will be instantly forwarded, instead of being received, stored and then checked by gmail servers.
+			<br>If so, why do we even need dovecot? Turns out, we need it for authentication. Then why did I switch from dovecot to cyrus?
+			Amount of config dovecot needs is incredible, also
+			<a
+				href="https://serverfault.com/a/137007"
+			>this</a> SO answer helped me move.
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
 		<!-- postfix + cyrus -->
-		<h3 class="title is-3 has-text-centered">postfix + cyrus</h3>
-		This part took me so much time. Like WAAAAAAAAAAAAY too much time. That's what I get for using arch linux on server. Ok, here it goes.
-		<br>
-		<h4 class="title is-4">auto forwarding</h4>
-		This was done using guide above. Just alias one email to another. I'm also using plain simple <code>aliases</code> file in tandem (but that's not needed).
-		<h4 class="title is-4">authentication methods</h4>
-		There are a few methods to choose from:
-		<ul>
-			<li>shadow - nope, since I want to have multiple accounts</li>
-			<li>PAM - maybe? (I might switch to this one)</li>
-			<li>IMAP server - nope</li>
-			<li>sasldb - this is what I chose</li>
-			<li>SQL - maybe? (I might switch to this one)</li>
-			<li>LDAP - nope</li>
-		</ul>
-		First of all, be sure that you have <code>saslauthd</code> configured (in my case in <code>/etc/conf.d/saslauthd</code>) to actually use <code>sasldb</code>.
-		You want the runtime argument to be <code>-a sasldb</code>.
-		<br>
-		Next is main config file (in my case <code>/etc/sasl2/smtpd.conf</code>).
-		<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code0 }}</code></pre>
-		Now, we need to add our accounts. <code>saslpasswd2 -c -u {domain} {username}</code> will do just that.
-		<br>
-		Test your accounts with <code>testsaslauthd -r {domain} -u {username} -p {password} -s smtp</code>.
-		<h4 class="title is-4">postfix</h4>
-		Now we just need to connect postfix to cyrus. Add this to <code>/etc/postfix/main.cf</code>.
-		<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code1 }}</code></pre>
-		<h4 class="title is-4">permissions</h4>
-		I run <code>saslauthd</code> service as <code>cyrus</code>cyrus user. 
-		Because postfix needs to communicate with cyrus over socket, I added both, <code>postfix</code> and <code>cyrus</code> accounts to <code>sasl</code> group.
-		Be sure that group <code>sasl</code> has rw access to <code>/run/saslauthd</code> folder and <code>/etc/sasldb2</code>.
-		Don't forget to set user in the <code>saslauthd</code> service file as well!
+		<v-flex>
+			<h2 class="display-2 text-xs-center">Attempt #2, postfix + cyrus</h2>This part took me so much time. Like WAAAAAAAAAAAAY too much time.
+			That's what I get for using arch linux on server. Ok, here it goes.
+			<!-- auto forwarding -->
+			<h3 class="headline">auto forwarding</h3>This was done using guide above. Just alias one email to another. I'm also using plain simple
+			<code>aliases</code>
+			file in tandem (but that's not needed).
+			<!-- auth -->
+			<h3 class="headline">authentication methods</h3>There are a few methods to choose from:
+			<ul>
+				<li>shadow - nope, since I want to have multiple accounts</li>
+				<li>PAM - maybe? (I might switch to this one)</li>
+				<li>IMAP server - nope</li>
+				<li>sasldb - this is what I chose</li>
+				<li>SQL - maybe? (I might switch to this one)</li>
+				<li>LDAP - nope</li>
+			</ul>First of all, be sure that you have
+			<code>saslauthd</code> configured (in my case in
+			<code>/etc/conf.d/saslauthd</code>) to actually use
+			<code>sasldb</code>.
+			You want the runtime argument to be
+			<code>-a sasldb</code>.
+			<br>Next is main config file (in my case
+			<code>/etc/sasl2/smtpd.conf</code>).
+			<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code0 }}</code></pre>Now, we need to add our accounts.
+			<code>saslpasswd2 -c -u {domain} {username}</code> will do just that.
+			<br>Test your accounts with
+			<code>testsaslauthd -r {domain} -u {username} -p {password} -s smtp</code>
+			.
+			<!-- auth postfix -->
+			<h3 class="headline">postfix config</h3>Now we just need to connect postfix to cyrus. Add this to
+			<code>/etc/postfix/main.cf</code>.
+			<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code1 }}</code></pre>
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
+		<!-- permissions -->
+		<v-flex>
+			<h2 class="display-2 text-xs-center">Permissions</h2>I run
+			<code>saslauthd</code> service as
+			<code>cyrus</code>cyrus user.
+			Because postfix needs to communicate with cyrus over socket, I added both,
+			<code>postfix</code> and
+			<code>cyrus</code> accounts to
+			<code>sasl</code> group.
+			Be sure that group
+			<code>sasl</code> has rw access to
+			<code>/run/saslauthd</code> folder and
+			<code>/etc/sasldb2</code>.
+			Don't forget to set user in the
+			<code>saslauthd</code> service file as well!
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
 		<!-- finished config -->
-		<h4 class="title is-4">Done!</h4>
-		Really? You might ask, wtf took me so long. I'm not the best sysadmin. Here is entire list of stuff I had problems with:
-		<ul>
-			<li><code>saslauthd</code> is configured to use PAM by default (<code>-a pam</code>) on arch linux</li>
-			<li>there is <code>-r</code> param in <code>saslauthd</code> which confused me</li>
-			<li><code>testsaslauthd</code> needed <code>-s smtp</code> and <code>-r {domain}</code> params</li>
-			<li>many many more, that I erased from my memory...</li>
-		</ul>
-		My hints for debugging are:
-		<ul>
-			<li>check <code>/var/log/auth.log</code> and <code>/var/log/mail.log</code></li>
-			<li>use <a href="https://wiki.zimbra.com/wiki/Simple_Troubleshooting_For_SMTP_Via_Telnet_And_Openssl">this</a> to check via telnet (often gives some output)</li>
-		</ul>
-		So as a bonus, here is my full configuration:
-		<b-collapse :open="false" aria-id="full-code">
-            <button
-                class="button is-primary"
-                slot="trigger"
-                aria-controls="full-code">Full postfix configuration</button>
-            <div class="notification">
-                <div class="content">
-					<code>postconf -n</code> (all postfix variables that I've changed to not default)
-					<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code2 }}</code></pre>
-					or, if you prefer this way:
-					<code>/etc/postfix/main.cf</code>
-					<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code3 }}</code></pre>
-					and <code>/etc/postfix/master.cf</code>
-					<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code4 }}</code></pre>
-				</div>
-            </div>
-        </b-collapse>
-		<!-- bonus -->
-		<h4 class="title is-4">Bonus #2</h4>
-		Did you know gmail has dark theme?
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/mail-server02.webp')">
-		</div>
-		Here's how to set it:
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/mail-server03.webp')">
-		</div>
-		There are also configurable filters. Here is an example filter I use, to label all emails that come from my website.
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/mail-server04.webp')">
-		</div>
-		<!-- Done! -->
-		<h1 class="title is-3 has-text-centered">Done!</h1>Nothing more. Enjoy your instant, free emailing!
-	</div>
+		<v-flex>
+			<h2 class="display-2 text-xs-center">Done!</h2>
+			Really? You might ask, wtf took me so long. I'm not the best sysadmin. Here is entire list of stuff I had problems with:
+			<ul>
+				<li>
+					<code>saslauthd</code> is configured to use PAM by default (
+					<code>-a pam</code>) on arch linux
+				</li>
+				<li>
+					there is
+					<code>-r</code> param in
+					<code>saslauthd</code> which confused me
+				</li>
+				<li>
+					<code>testsaslauthd</code> needed
+					<code>-s smtp</code> and
+					<code>-r {domain}</code> params
+				</li>
+				<li>many many more, that I erased from my memory...</li>
+			</ul>My hints for debugging are:
+			<ul>
+				<li>
+					check
+					<code>/var/log/auth.log</code> and
+					<code>/var/log/mail.log</code>
+				</li>
+				<li>
+					use
+					<a href="https://wiki.zimbra.com/wiki/Simple_Troubleshooting_For_SMTP_Via_Telnet_And_Openssl">this</a> to check via telnet (often gives some output)
+				</li>
+			</ul>
+			<v-expansion-panel>
+				<v-expansion-panel-content>
+					<template v-slot:header>
+						<span>
+							<h4 class="title is-4">Bonus</h4>
+							Full configuration
+						</span>
+					</template>
+
+					<v-card>
+						<v-card-text>
+							<code>postconf -n</code> (all postfix variables that I've changed to not default)
+							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code2 }}</code></pre>or, if you prefer this way:
+							<code>/etc/postfix/main.cf</code>
+							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code3 }}</code></pre>and
+							<code>/etc/postfix/master.cf</code>
+							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code4 }}</code></pre>
+						</v-card-text>
+					</v-card>
+				</v-expansion-panel-content>
+			</v-expansion-panel>
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
+		<!-- bonus (gmail) -->
+		<v-flex>
+			<v-expansion-panel>
+				<v-expansion-panel-content>
+					<template v-slot:header>
+						<span>
+							<h4 class="title is-4">Bonus #2</h4>
+							Did you know gmail has dark theme?
+						</span>
+					</template>
+
+					<v-card>
+						<v-card-text>
+							<v-img :src="require('@/assets/blog/mail-server02.webp')" contain />
+							Here's how to set it:
+							<v-img :src="require('@/assets/blog/mail-server03.webp')" contain/>
+							There are also configurable filters. Here is an example filter I use, to label all emails that come from my website.
+							<v-img :src="require('@/assets/blog/mail-server04.webp')" contain />
+						</v-card-text>
+					</v-card>
+				</v-expansion-panel-content>
+			</v-expansion-panel>
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
+		<!-- done -->
+		<v-flex>
+			<h1 class="display-2 text-xs-center">Done!</h1>
+			Nothing more. Enjoy your instant, free emailing!
+		</v-flex>
+	</v-layout>
 </template>
 
 <script lang="ts">
@@ -128,11 +206,11 @@ import Prism from "prismjs";
 export default class extends Vue {
 	code0 = `pwcheck_method: auxprop
 auxprop_plugin: sasldb
-mech_list: PLAIN LOGIN CRAM-MD5 DIGEST-MD5 NTLM`
+mech_list: PLAIN LOGIN CRAM-MD5 DIGEST-MD5 NTLM`;
 
 	code1 = `smtpd_sasl_path = smtpd
 smtpd_sasl_type = cyrus
-smtpd_sasl_auth_enable = yes`
+smtpd_sasl_auth_enable = yes`;
 
 	code2 = `alias_database = $alias_maps
 alias_maps = hash:/etc/postfix/aliases
@@ -177,7 +255,7 @@ virtual_alias_domains = $mydomain
 virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf, mysql:/etc/postfix/mysql-virtual-email2email.cf
 virtual_mailbox_base = /var/mail/vhosts
 virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
-virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf`
+virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf`;
 
 	code3 = `# SOFT BOUNCE
 #
@@ -263,7 +341,7 @@ unknown_client_reject_code = 550
 unknown_hostname_reject_code = 550
 unverified_recipient_reject_code = 550
 unverified_sender_reject_code = 550
-compatibility_level = 2`
+compatibility_level = 2`;
 
 	code4 = `#
 # Postfix master process configuration file.  For details on the format
@@ -333,6 +411,6 @@ local     unix  -       n       n       -       -       local
 virtual   unix  -       n       n       -       -       virtual
 lmtp      unix  -       -       n       -       -       lmtp
 anvil     unix  -       -       n       -       1       anvil
-scache    unix  -       -       n       -       1       scache`
+scache    unix  -       -       n       -       1       scache`;
 }
 </script>

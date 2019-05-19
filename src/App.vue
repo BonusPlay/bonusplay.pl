@@ -1,17 +1,19 @@
 <template>
-	<div id="app">
+	<v-app dark id="app">
 		<Navbar/>
-		<transition
-			name="fade"
-			mode="out-in"
-			@beforeLeave="beforeLeave"
-			@enter="enter"
-			@afterEnter="afterEnter"
-		>
-			<router-view class="main"/>
-		</transition>
+		<v-content>
+			<transition
+				name="fade"
+				mode="out-in"
+				@beforeLeave="beforeLeave"
+				@enter="enter"
+				@afterEnter="afterEnter"
+			>
+				<router-view class="main"/>
+			</transition>
+		</v-content>
 		<MyFooter/>
-	</div>
+	</v-app>
 </template>
 
 <script lang="ts">
@@ -49,29 +51,8 @@ export default class App extends Vue {
 
 <style lang="less">
 #app {
-	font-family: "Avenir", Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	background-color: #161616;
-	color: #e6e6e6;
-
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-
-	.main {
-		flex: 1;
-		padding: 0;
-		display: flex;
-		flex-wrap: none;
-		flex-direction: column;
-		flex-wrap: nowrap;
-	}
-
-	.title {
-		color: whitesmoke;
-	}
+	background-color: darken(#303030, 10%);
+	color: @text;
 
 	.fade-enter-active,
 	.fade-leave-active {
@@ -80,7 +61,7 @@ export default class App extends Vue {
 		transition-timing-function: ease;
 		overflow: hidden;
 	}
-	
+
 	.fade-enter,
 	.fade-leave-to {
 		opacity: 0;

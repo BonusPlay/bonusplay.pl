@@ -1,27 +1,21 @@
 <template>
-	<footer class="footer is-warning">
-		<div class="content has-text-centered">
-			<strong>
-				<i>Copyright © {{new Date().getFullYear()}} BonusPlay</i>
-			</strong>
-		</div>
-	</footer>
+	<v-footer class="pa-3">
+		<v-spacer/>
+		<strong>
+			<i>&copy; {{new Date().getFullYear()}} BonusPlay</i>
+		</strong>
+		<v-spacer/>
+	</v-footer>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
-@Component
-export default class MyFooter extends Vue {}
-</script>
-
 <style scoped lang="less">
-.footer {
-	background-color: #6b1b80;
-	padding: 1.5rem;
+.theme--dark {
+	.v-footer {
+		background-color: @primary;
 
-	strong {
-		color: whitesmoke;
+		strong {
+			color: whitesmoke;
+		}
 	}
 }
 </style>
