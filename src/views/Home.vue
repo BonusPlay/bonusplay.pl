@@ -36,7 +36,7 @@
 			<h2 class="display-2">My projects</h2>
 
 			<v-container>
-				<v-layout row wrap fill-height align-start justify-space-around>
+				<v-layout row wrap>
 					<v-flex
 						v-for="project in projects"
 						:key="project.title"
@@ -45,15 +45,17 @@
 						:class="{'py-1': $vuetify.breakpoint.smAndDown, 'px-1': $vuetify.breakpoint.mdAndUp}"
 					>
 					<!-- TODO: have links on same height -->
-						<v-card>
+						<v-card height="100%">
 							<v-card-title primary-title>
 								<h3 class="headline mb-0">{{ project.title }}</h3>
-								<span class="text-xs-justify">{{ project.description }}</span>
 							</v-card-title>
+							<v-card-text>
+								<span class="text-xs-justify">{{ project.description }}</span>
+							</v-card-text>
 							<v-card-actions>
 								<v-spacer class="hidden-md-and-up"/>
 								<v-container fluid pa-0>
-									<v-layout row wrap fill-height align-center justify-space-around>
+									<v-layout row wrap fill-height align-space-around justify-space-around>
 										<v-flex v-for="link in project.links" :key="link.to">
 											<!-- ugly hack to distinguish between outside link and inside link
 												 could be done using another field -->

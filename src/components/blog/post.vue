@@ -11,19 +11,14 @@
         >
 			<v-icon>fas fa-arrow-left</v-icon>
 		</v-btn>
-		<router-view class="px-2"/>
+		<router-view class="blog-post"/>
 	</v-container>
 </template>
 
 <style lang="less" scoped>
 .blog-post {
-	margin-top: 5vh;
-	margin-bottom: 5vh;
-
-	@media @mobile {
-		max-width: calc(100vw - 10px);
-		padding-left: 5px;
-		padding-right: 5px;
+	@media @desktop {
+		margin: 0 5vw;
 	}
 }
 

@@ -51,6 +51,8 @@ export default class App extends Vue {
 
 <style lang="less">
 #app {
+	font-family: "Avenir", Helvetica, Arial, sans-serif;
+	font-size: 1rem;
 	background-color: darken(#303030, 10%);
 	color: @text;
 

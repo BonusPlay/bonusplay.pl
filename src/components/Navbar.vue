@@ -22,13 +22,17 @@
 			<v-toolbar-side-icon @click="expand = !expand"/>
 			<v-spacer/>
 			<v-toolbar-items>
+				<v-btn to="/">
+					<v-icon>fas fa-home</v-icon>
+				</v-btn>
 				<v-btn v-for="item in left" :key="item.name" :to="item.to">{{ item.name }}</v-btn>
 			</v-toolbar-items>
 
+			<!-- fix clipping on mobile -->
 			<template v-slot:extension v-if="expand">
 				<v-spacer/>
 				<v-toolbar-items>
-					<v-btn v-for="item in right" :key="item.name" :href="item.to" flat>
+					<v-btn v-for="item in right" :key="item.name" :href="item.to" flat class="px-0">
 						<v-icon>{{ item.pack }} fa-{{ item.icon }}</v-icon>
 					</v-btn>
 				</v-toolbar-items>
