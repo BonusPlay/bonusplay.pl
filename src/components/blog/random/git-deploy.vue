@@ -1,40 +1,57 @@
 <template>
-	<div class="has-text-justified content">
-		<h1 class="title is-3 has-text-centered">Deploy with git</h1>In this blog post, I'm going to describe how I deploy my website via git, without a single additional command.
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/git-deploy00.webp')">
-		</div>
+	<v-layout align-space-around justify-space-around column text-xs-justify>
 		<!-- Goal -->
-		<h3 class="title is-3 has-text-centered">Goal</h3>When I push
-		<code>master</code> branch to my github repo, I want it to deploy to production. Also, when I push
-		<code>dev</code>
-		branch it will deploy to development environment.
+		<v-flex>
+			<h1 class="display-3 text-xs-center">Deploy with git</h1>
+			In this blog post, I'm going to describe how I deploy my website via git, without a single additional command.
+			When I push
+			<code>master</code> branch to my github repo, I want it to deploy to production. Also, when I push
+			<code>dev</code> branch it will deploy to development environment.
+			<v-img :src="require('@/assets/blog/git-deploy00.webp')" contain max-height="20vh"/>
+		</v-flex>
+		
+		<v-divider class="my-3"/>
+
 		<!-- How to -->
-		<h3 class="title is-3 has-text-centered">How to</h3>Setup is divided into two parts,
-		<i>"client"</i> (your PC) and
-		<i>"server"</i>
-		(server you want to deploy to). All data in <code>{}</code> is placeholder and need to be replaced!
-		<h4 class="title is-4">Server side</h4>
-		<ul>
-			<li><code>git init --bare {folder}</code> - we initialize a bare git repo</li>
-			<li>look up how to do a "git shared repository" if you want multiple people pushing to same repo</li>
-			<li>create a file <code>{folder}/hooks/post-receive</code> - this is a bash script, that will be executed whenever you push</li>
-		</ul>
-		My hook looks like this:
-		<pre class="line-numbers" data-start="0"><code class="lang-bash">{{ code }}</code></pre>
-		<h4 class="title is-4">Client side</h4>
-		Here, the <code>{folder}</code> is an absolute path of folder created in previous steps.
-		<ul>
-			<li><code>git remote add deploy ssh://{user}@{ip}/{folder}</code> - if you want to have a separate remote</li>
-			<li><code>git remote add-url {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote</li>
-		</ul>
+		<v-flex>
+			<h2 class="display-2 text-xs-center">How to</h2>Setup is divided into two parts,
+			<i>"client"</i> (your PC) and
+			<i>"server"</i>
+			(server you want to deploy to). All data in
+			<code>{}</code> is placeholder and need to be replaced!
+			<h3 class="display-1">Server side</h3>
+			<ul>
+				<li>
+					<code>git init --bare {folder}</code> - we initialize a bare git repo
+				</li>
+				<li>look up how to do a "git shared repository" if you want multiple people pushing to same repo</li>
+				<li>
+					create a file
+					<code>{folder}/hooks/post-receive</code> - this is a bash script, that will be executed whenever you push
+				</li>
+			</ul>My hook looks like this:
+			<pre class="line-numbers" data-start="0"><code class="lang-bash">{{ code }}</code></pre>
+			<h3 class="display-1">Client side</h3>Here, the
+			<code>{folder}</code> is an absolute path of folder created in previous steps.
+			<ul>
+				<li>
+					<code>git remote add deploy ssh://{user}@{ip}/{folder}</code> - if you want to have a separate remote
+				</li>
+				<li>
+					<code>git remote add-url {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote
+				</li>
+			</ul>
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
 		<!-- Done! -->
-		<h1 class="title is-3 has-text-centered">Done!</h1>
-		Nothing more. Enjoy your easy deploys!
-		<div class="has-text-centered">
-			<img :src="require('@/assets/blog/git-deploy01.webp')">
-		</div>
-	</div>
+		<v-flex>
+			<h2 class="display-2 text-xs-center">Done!</h2>
+			Nothing more. Enjoy your easy deploys!
+			<v-img :src="require('@/assets/blog/git-deploy01.webp')" contain max-height="20vh"/>
+		</v-flex>
+	</v-layout>
 </template>
 
 <script lang="ts">
@@ -91,6 +108,6 @@ rm -rf $TARGET/*
 mv ./dist/* $TARGET/
 
 # cleanup
-rm -rf $TEMP`
+rm -rf $TEMP`;
 }
 </script>
