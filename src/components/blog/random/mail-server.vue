@@ -139,7 +139,7 @@
 				<v-expansion-panel-content>
 					<template v-slot:header>
 						<span>
-							<h4 class="title is-4">Bonus</h4>
+							<h4 class="">Bonus</h4>
 							Full configuration
 						</span>
 					</template>
@@ -166,7 +166,7 @@
 				<v-expansion-panel-content>
 					<template v-slot:header>
 						<span>
-							<h4 class="title is-4">Bonus #2</h4>
+							<h4 class="">Bonus #2</h4>
 							Did you know gmail has dark theme?
 						</span>
 					</template>

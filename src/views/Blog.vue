@@ -102,6 +102,10 @@ export default class Home extends Vue {
 				{
 					to: "random/mail-server",
 					title: "Mail server with postfix + dovecot/cyrus"
+				},
+				{
+					to: "random/linux-gaming",
+					title: "Gaming on Linux"
 				}
 			]
 		}
