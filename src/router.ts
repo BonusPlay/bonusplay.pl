@@ -21,6 +21,7 @@ import BlogMultiplayer1 from "./components/blog/networking/1.vue";
 // random
 import BlogGitDeploy from "./components/blog/random/git-deploy.vue";
 import BlogMailServer from "./components/blog/random/mail-server.vue";
+import BlogLinuxGaming from "./components/blog/random/linux-gaming.vue";
 
 Vue.use(Router);
 
@@ -81,6 +82,10 @@ export default new Router({
 					{
 						path: "/mail-server",
 						component: BlogMailServer
+					},
+					{
+						path: "/linux-gaming",
+						component: BlogLinuxGaming
 					}
 				])
 			]
