@@ -51,11 +51,13 @@
 			<h2 class="display-2 text-xs-center">Attempt #2, postfix + cyrus</h2>This part took me so much time. Like WAAAAAAAAAAAAY too much time.
 			That's what I get for using arch linux on server. Ok, here it goes.
 			<!-- auto forwarding -->
-			<h3 class="headline">auto forwarding</h3>This was done using guide above. Just alias one email to another. I'm also using plain simple
+			<h3 class="headline">auto forwarding</h3>
+			This was done using guide above. Just alias one email to another. I'm also using plain simple
 			<code>aliases</code>
 			file in tandem (but that's not needed).
 			<!-- auth -->
-			<h3 class="headline">authentication methods</h3>There are a few methods to choose from:
+			<h3 class="headline">authentication methods</h3>
+			There are a few methods to choose from:
 			<ul>
 				<li>shadow - nope, since I want to have multiple accounts</li>
 				<li>PAM - maybe? (I might switch to this one)</li>
@@ -99,6 +101,56 @@
 			<code>/etc/sasldb2</code>.
 			Don't forget to set user in the
 			<code>saslauthd</code> service file as well!
+			<br>
+			<br>
+			<i>fast forward a month...</i>
+			<br>
+			<br>
+			What do you mean, my emails are going to spam?! The answer for that is pretty simple.
+			SMTP protocol has no security whatsoever. Which means anyone could send an email from
+			<code>bill_gates@microsoft.com</code>. That's why everyne is sending our emails to spam.
+			We need to somehow <b>prove</b>, that we really own the domain and we really are the real
+			sender. To do that we need to add some stuff on DNS.
+		</v-flex>
+
+		<v-divider class="my-3"/>
+
+		<!-- DMARC, etc. -->
+		<v-flex>
+			<h2 class="display-2 text-xs-center">Attempt #3, postfix + cyrus + opendkim</h2>
+			First, we need to configure our DNS.
+			<h3 class="headline">SPF</h3>
+			Just use <a href="https://www.spfwizard.net/">this</a> record generator.
+			<br/>
+			Add the record as <code>TXT</code> on root level domain.
+			<h3 class="headline">DMARC</h3>
+			Pretty much same as <code>SPF</code>. Record generator <a href="https://mxtoolbox.com/DMARCRecordGenerator.aspx">here</a>.
+			<br/>
+			Add <code>TXT</code> record with <code>_dmarc</code> name.
+			<h3 class="headline">DKIM</h3>
+			Here's where the fun begins.
+			<br/>
+			<code>/etc/opendkim/opendkim.conf</code>
+			<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code4
+		 }}</code></pre>
+			<code>/etc/opendkim/key.table</code>
+			<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code5
+		   }}</code></pre>
+			<code>/etc/opendkim/signing.table</code>
+			<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code6   }}</code></pre>
+			<code>/etc/opendkim/trusted.hosts</code><br/>
+			In this file add hosts that you trust (localhost, etc).
+			Now, that we have <code>opendkim</code> set up, we need to generate our keys.
+			<code>opendkim-genkey -b 4096 -h rsa-sha256 -r -d {domain} -v</code> will generate keys.
+			Put private key in <code>/etc/opendkim/private</code> folder. Public key goes onto the DNS
+			as <code>TXT</code> record with <code>mail._domainkey</code>.
+			<h3 class="headline">Postfix</h3>
+			Last thing to do is tell postfix to use opendkim (don't forget to fire up <code>opendkim</code> service after).
+			<br/>
+			Add in <code>/etc/postfix/main.cf</code>
+			<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code7   }}</code></pre>
+			There we go, now our emails are signed!
+			<v-img :src="require('@/assets/blog/mail-server05.webp')" contain max-height="30vh"/>
 		</v-flex>
 
 		<v-divider class="my-3"/>
@@ -122,6 +174,7 @@
 					<code>-s smtp</code> and
 					<code>-r {domain}</code> params
 				</li>
+				<li>opendkim couldn't create it's own runtime folder</li>
 				<li>many many more, that I erased from my memory...</li>
 			</ul>My hints for debugging are:
 			<ul>
@@ -135,23 +188,26 @@
 					<a href="https://wiki.zimbra.com/wiki/Simple_Troubleshooting_For_SMTP_Via_Telnet_And_Openssl">this</a> to check via telnet (often gives some output)
 				</li>
 			</ul>
+		</v-flex>
+
+		<!-- full config -->
+		<v-flex>
 			<v-expansion-panel>
 				<v-expansion-panel-content>
 					<template v-slot:header>
 						<span>
 							<h4 class="title is-4">Bonus</h4>
-							Full configuration
+							Full postfix configuration
 						</span>
 					</template>
 
 					<v-card>
 						<v-card-text>
-							<code>postconf -n</code> (all postfix variables that I've changed to not default)
-							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code2 }}</code></pre>or, if you prefer this way:
 							<code>/etc/postfix/main.cf</code>
-							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code3 }}</code></pre>and
+							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code2 }}</code></pre>and
 							<code>/etc/postfix/master.cf</code>
-							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code4 }}</code></pre>
+							<pre class="line-numbers" data-start="0"><code class="lang-none">{{ code3
+						 }}</code></pre>
 						</v-card-text>
 					</v-card>
 				</v-expansion-panel-content>
@@ -212,52 +268,7 @@ mech_list: PLAIN LOGIN CRAM-MD5 DIGEST-MD5 NTLM`;
 smtpd_sasl_type = cyrus
 smtpd_sasl_auth_enable = yes`;
 
-	code2 = `alias_database = $alias_maps
-alias_maps = hash:/etc/postfix/aliases
-biff = no
-compatibility_level = 2
-inet_interfaces = all
-inet_protocols = all
-invalid_hostname_reject_code = 550
-mailbox_size_limit = 0
-meta_directory = /etc/postfix
-mydestination = localhost
-mydomain = bonusplay.pl
-myhostname = bonusplay.pl
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
-myorigin = $mydomain
-non_fqdn_reject_code = 550
-recipient_delimiter = +
-relayhost =
-shlib_directory = /usr/lib/postfix
-smtp_tls_security_level = may
-smtpd_banner = $myhostname ESMTP $mail_name
-smtpd_helo_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_invalid_helo_hostname, reject_non_fqdn_helo_hostname
-smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_non_fqdn_recipient, reject_unknown_recipient_domain, reject_unlisted_recipient, reject_unauth_destination
-smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, defer_unauth_destination
-smtpd_sasl_auth_enable = yes
-smtpd_sasl_path = smtpd
-smtpd_sasl_security_options = noanonymous, noplaintext
-smtpd_sasl_tls_security_options = noanonymous
-smtpd_sasl_type = cyrus
-smtpd_sender_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_non_fqdn_sender, reject_unknown_sender_domain
-smtpd_tls_auth_only = yes
-smtpd_tls_cert_file = /etc/letsencrypt/live/bonusplay.pl/fullchain.pem
-smtpd_tls_key_file = /etc/letsencrypt/live/bonusplay.pl/privkey.pem
-smtpd_tls_security_level = may
-smtpd_use_tls = yes
-unknown_address_reject_code = 550
-unknown_client_reject_code = 550
-unknown_hostname_reject_code = 550
-unverified_recipient_reject_code = 550
-unverified_sender_reject_code = 550
-virtual_alias_domains = $mydomain
-virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf, mysql:/etc/postfix/mysql-virtual-email2email.cf
-virtual_mailbox_base = /var/mail/vhosts
-virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
-virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf`;
-
-	code3 = `# SOFT BOUNCE
+	code2 = `# SOFT BOUNCE
 #
 # The soft_bounce parameter provides a limited safety net for
 # testing.  When soft_bounce is enabled, mail will remain queued that
@@ -343,7 +354,7 @@ unverified_recipient_reject_code = 550
 unverified_sender_reject_code = 550
 compatibility_level = 2`;
 
-	code4 = `#
+	code3 = `#
 # Postfix master process configuration file.  For details on the format
 # of the file, see the master(5) manual page (command: "man 5 master" or
 # on-line: http://www.postfix.org/master.5.html).
@@ -412,5 +423,35 @@ virtual   unix  -       n       n       -       -       virtual
 lmtp      unix  -       -       n       -       -       lmtp
 anvil     unix  -       -       n       -       1       anvil
 scache    unix  -       -       n       -       1       scache`;
+
+	code4 = `AutoRestart             Yes
+AutoRestartRate         10/1h
+UMask                   002
+Syslog                  yes
+
+# Additional logging
+SyslogSuccess           Yes
+LogWhy                  Yes
+
+Canonicalization        relaxed/simple
+
+ExternalIgnoreList      refile:/etc/opendkim/trusted.hosts
+InternalHosts           refile:/etc/opendkim/trusted.hosts
+KeyTable                refile:/etc/opendkim/key.table
+SigningTable            refile:/etc/opendkim/signing.table
+
+Mode                    sv
+PidFile                 /var/run/opendkim/opendkim.pid
+SignatureAlgorithm      rsa-sha256
+
+UserID                  opendkim:opendkim
+Socket                  inet:12301@localhost`;
+
+	code5 = `mail._domainkey.{domain}     {domain}:mail:/etc/opendkim/keys/{domain}.private`;
+
+	code6 = `*@{domain} mail._domainkey.{domain}`;
+
+	code7 = `smtpd_milters = inet:localhost:12301
+non_smtpd_milters = inet:localhost:12301`;
 }
 </script>
