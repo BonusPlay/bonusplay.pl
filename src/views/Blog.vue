@@ -1,14 +1,14 @@
 <template>
 	<v-container>
-		<v-layout row wrap fill-height align-center justify-space-around>
+		<v-layout row wrap>
 			<v-flex v-for="section in sections" :key="section.title" xs12 sm6 md4 pa-1>
-				<v-card>
+				<v-card height="100%" class="flex-col">
 					<v-card-title primary-title>
 						<h3 class="headline mb-0">{{ section.title }}</h3>
 						<span class="text-xs-justify">{{ section.subtitle }}</span>
 					</v-card-title>
 
-					<v-container pa-0>
+					<v-container pa-0 class="links">
 						<v-layout align-space-around justify-space-between column fill-height>
 							<v-flex
 								v-for="article in section.articles"
@@ -119,5 +119,9 @@ export default class Home extends Vue {
 	height: auto;
 	padding: 5px 16px;
 	min-height: 36px;
+}
+
+.links {
+	margin-top: auto;
 }
 </style>

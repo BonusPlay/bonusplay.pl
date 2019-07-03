@@ -44,8 +44,7 @@
 						md4
 						:class="{'py-1': $vuetify.breakpoint.smAndDown, 'px-1': $vuetify.breakpoint.mdAndUp}"
 					>
-					<!-- TODO: have links on same height -->
-						<v-card height="100%">
+						<v-card height="100%" class="flex-col">
 							<v-card-title primary-title>
 								<h3 class="headline mb-0">{{ project.title }}</h3>
 							</v-card-title>
@@ -214,3 +213,9 @@ export default class Home extends Vue {
 	}
 }
 </script>
+
+<style lang="less" scoped>
+.v-card__actions {
+	margin-top: auto;
+}
+</style>
