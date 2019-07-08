@@ -7,8 +7,25 @@
 					<v-icon>fas fa-home</v-icon>
 				</v-btn>
 				<v-btn v-for="item in left" :key="item.name" :to="item.to">{{ item.name }}</v-btn>
+
+				<v-menu open-on-hover nudge-bottom="64px">
+					<template v-slot:activator="{ on }">
+						<v-btn v-on="on">CV</v-btn>
+					</template>
+
+					<v-list>
+						<v-list-tile v-for="entry in cv" :href="entry.to" :key="entry.to">
+							<v-list-tile-action class="pr-1">
+								<v-img contain :src="entry.icon" height="100%" />
+							</v-list-tile-action>
+							<v-list-tile-action-text>
+								<span class="title">{{ entry.text }}</span>
+							</v-list-tile-action-text>
+						</v-list-tile>
+					</v-list>
+				</v-menu>
 			</v-toolbar-items>
-			<v-spacer/>
+			<v-spacer />
 			<v-toolbar-items>
 				<v-btn v-for="item in right" :key="item.name" :href="item.to">
 					<v-icon left>{{ item.pack }} fa-{{ item.icon }}</v-icon>
@@ -19,12 +36,28 @@
 
 		<!-- Mobile -->
 		<v-toolbar app class="hidden-md-and-up">
-			<v-toolbar-side-icon @click="expand = !expand"/>
+			<v-toolbar-side-icon @click="expand = !expand" />
 			<v-toolbar-items>
 				<v-btn to="/">
 					<v-icon>fas fa-home</v-icon>
 				</v-btn>
 				<v-btn v-for="item in left" :key="item.name" :to="item.to">{{ item.name }}</v-btn>
+				<v-menu open-on-hover nudge-bottom="48px">
+					<template v-slot:activator="{ on }">
+						<v-btn v-on="on">CV</v-btn>
+					</template>
+
+					<v-list>
+						<v-list-tile v-for="entry in cv" :href="entry.to" :key="entry.to">
+							<v-list-tile-action class="pr-1">
+								<v-img contain :src="entry.icon" height="100%" />
+							</v-list-tile-action>
+							<v-list-tile-action-text>
+								<span class="title">{{ entry.text }}</span>
+							</v-list-tile-action-text>
+						</v-list-tile>
+					</v-list>
+				</v-menu>
 			</v-toolbar-items>
 
 			<!-- fix clipping on mobile -->
@@ -51,6 +84,19 @@ export default class Navbar extends Vue {
 		{ name: "API", to: "/api" }
 	];
 
+	cv = [
+		{
+			to: "/cv_en",
+			icon: require("@/assets/en.svg"),
+			text: "English"
+		},
+		{
+			to: "/cv_pl",
+			icon: require("@/assets/pl.svg"),
+			text: "Polski"
+		}
+	];
+
 	right = [
 		{ name: "Github", to: "/github", icon: "github", pack: "fab" },
 		{
@@ -73,6 +119,18 @@ export default class Navbar extends Vue {
 
 <style lang="less" scoped>
 .theme--dark {
+	.v-list {
+		background-color: #7b1fa2;
+
+		&:hover {
+			background-color: #7b1fa2;
+		}
+
+		.v-list__tile__action-text {
+			color: @text;
+		}
+	}
+
 	.v-toolbar {
 		background-color: #7b1fa2; // purple darken-2
 
@@ -84,7 +142,7 @@ export default class Navbar extends Vue {
 
 		.v-icon {
 			// counter hack to my hack, I should really fix this
-			background-color: transparent!important;
+			background-color: transparent !important;
 		}
 	}
 }
