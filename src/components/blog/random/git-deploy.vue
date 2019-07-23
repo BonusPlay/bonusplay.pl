@@ -29,6 +29,9 @@
 					create a file
 					<code>{folder}/hooks/post-receive</code> - this is a bash script, that will be executed whenever you push
 				</li>
+				<li>
+					remember to make <code>{folder}/hooks/post-receive</code> executable (I forgot it so many times I put this in it's own step)
+				</li>
 			</ul>My hook looks like this:
 			<pre class="line-numbers" data-start="0"><code class="lang-bash">{{ code }}</code></pre>
 			<h3 class="display-1">Client side</h3>Here, the
@@ -38,7 +41,7 @@
 					<code>git remote add deploy ssh://{user}@{ip}/{folder}</code> - if you want to have a separate remote
 				</li>
 				<li>
-					<code>git remote add-url {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote
+					<code>git remote emote set-url --add {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote
 				</li>
 			</ul>
 		</v-flex>
