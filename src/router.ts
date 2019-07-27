@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Blog from "./views/Blog.vue";
 import E404 from "./views/404.vue";
 import Api from "./views/Api.vue";
+import Notes from "./views/Notes.vue";
 
 import BlogPost from "./components/blog/post.vue";
 
@@ -93,6 +94,10 @@ export default new Router({
 		{
 			path: "/api",
 			component: Api
+		},
+		{
+			path: "/n",
+			component: Notes
 		},
 		{
 			path: "*",

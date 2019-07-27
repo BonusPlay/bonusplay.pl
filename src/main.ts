@@ -28,6 +28,9 @@ import Prism from "prismjs";
 import colors from "vuetify/es5/util/colors";
 Prism.highlightAll();
 
+import Clipboard from "v-clipboard";
+Vue.use(Clipboard);
+
 Vue.config.productionTip = false;
 
 new Vue({
