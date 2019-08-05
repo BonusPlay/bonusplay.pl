@@ -1,7 +1,7 @@
 <template>
 	<v-container>
-		<v-layout>
-			<v-flex xs6 v-for="(side, index) in data" :key="`side-${index}`">
+		<v-layout row wrap>
+			<v-flex xs12 md6 v-for="(side, index) in data" :key="`side-${index}`">
 				<v-list>
 					<v-list-group
 						v-for="category in side"
@@ -61,6 +61,14 @@ export default class Notes extends Vue {
 				type: "link",
 				title: "HTTP request bin",
 				value: "https://webhook.site"
+			}, {
+				type: "link",
+				title: "local JSON REST server",
+				value: "https://github.com/typicode/json-server"
+			}, {
+				type: "link",
+				title: "tunnel localhost to a temp domain",
+				value: "https://ngrok.com"
 			}]
 		}
 	], [

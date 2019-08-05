@@ -41,7 +41,7 @@
 					<code>git remote add deploy ssh://{user}@{ip}/{folder}</code> - if you want to have a separate remote
 				</li>
 				<li>
-					<code>git remote emote set-url --add {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote
+					<code>git remote set-url --add {remote} ssh://{user}@{ip}/{folder}</code> - if you want to deploy when you push to specified remote
 				</li>
 			</ul>
 		</v-flex>
