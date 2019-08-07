@@ -69,6 +69,10 @@ export default class Notes extends Vue {
 				type: "link",
 				title: "tunnel localhost to a temp domain",
 				value: "https://ngrok.com"
+			}, {
+				type: "link",
+				title: "Substitute cipher solver",
+				value: "https://quipqiup.com"
 			}]
 		}
 	], [
