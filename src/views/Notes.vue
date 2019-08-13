@@ -73,6 +73,10 @@ export default class Notes extends Vue {
 				type: "link",
 				title: "Substitute cipher solver",
 				value: "https://quipqiup.com"
+			}, {
+				type: "link",
+				title: "Binary file parser/editor",
+				value: "https://ide.kaitai.io"
 			}]
 		}
 	], [
