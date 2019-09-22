@@ -1,0 +1,85 @@
+# SOFT BOUNCE
+#
+# The soft_bounce parameter provides a limited safety net for
+# testing.  When soft_bounce is enabled, mail will remain queued that
+# would otherwise bounce. This parameter disables locally-generated
+# bounces, and prevents the SMTP server from rejecting mail permanently
+# (by changing 5xx replies into 4xx replies). However, soft_bounce
+# is no cure for address rewriting mistakes or mail routing mistakes.
+#
+#soft_bounce = no
+
+smtpd_banner = $myhostname ESMTP $mail_name
+biff = no
+
+meta_directory = /etc/postfix
+shlib_directory = /usr/lib/postfix
+
+# TLS parameters
+smtpd_tls_cert_file=/etc/letsencrypt/live/bonusplay.pl/fullchain.pem
+smtpd_tls_key_file=/etc/letsencrypt/live/bonusplay.pl/privkey.pem
+smtpd_use_tls=yes
+smtpd_tls_auth_only = yes
+smtp_tls_security_level = may
+smtpd_sasl_auth_enable = yes
+smtpd_tls_security_level = may
+smtpd_sasl_path = smtpd
+smtpd_sasl_type = cyrus
+smtpd_sasl_security_options = noanonymous, noplaintext
+smtpd_sasl_tls_security_options = noanonymous
+
+# Restrictions
+smtpd_helo_restrictions =
+        permit_mynetworks,
+        permit_sasl_authenticated,
+        reject_invalid_helo_hostname,
+        reject_non_fqdn_helo_hostname
+smtpd_recipient_restrictions =
+        permit_mynetworks,
+        permit_sasl_authenticated,
+        reject_non_fqdn_recipient,
+        reject_unknown_recipient_domain,
+        reject_unlisted_recipient,
+        reject_unauth_destination
+smtpd_sender_restrictions =
+        permit_mynetworks,
+        permit_sasl_authenticated,
+        reject_non_fqdn_sender,
+        reject_unknown_sender_domain
+smtpd_relay_restrictions =
+        permit_mynetworks,
+        permit_sasl_authenticated,
+        defer_unauth_destination
+
+myhostname = bonusplay.pl
+mydomain = bonusplay.pl
+myorigin = $mydomain
+mydestination = localhost
+relayhost =
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+inet_protocols = all
+
+# Aliases
+alias_maps = hash:/etc/postfix/aliases
+alias_database = $alias_maps
+
+# Virtual domains, users, and aliases
+virtual_mailbox_base = /var/mail/vhosts
+virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
+virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
+virtual_alias_domains = $mydomain
+virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf,
+        mysql:/etc/postfix/mysql-virtual-email2email.cf
+
+# Reply Rejection Codes
+invalid_hostname_reject_code = 550
+non_fqdn_reject_code = 550
+unknown_address_reject_code = 550
+unknown_client_reject_code = 550
+unknown_hostname_reject_code = 550
+unverified_recipient_reject_code = 550
+unverified_sender_reject_code = 550
+compatibility_level = 2
