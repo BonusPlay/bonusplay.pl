@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import wip from "@/components/wip.vue";
+import wip from "@/components/WIP";
 
 export default {
 	name: "Networking0",

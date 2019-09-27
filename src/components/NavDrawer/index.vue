@@ -9,9 +9,12 @@
 
 				<NavDrawerItem v-for="item in cv" :key="item.title" :item="item"/>
 			</v-list-group>
-			<v-divider/>
+		</v-list>
+		<v-divider/>
+		<v-list>
 			<NavDrawerItem v-for="item in middle" :key="item.title" :item="item"/>
 		</v-list>
+		<v-divider/>
 		<v-list dense align-self-end>
 			<NavDrawerItem v-for="item in bottom" :key="item.title" :item="item"/>
 		</v-list>
@@ -30,18 +33,19 @@ export default {
 			new Item("API", "dashboard", "/api")
 		],
 		cv: [
-			new Item("Polish", "dashboard", "/cv_pl"),
-			new Item("English", "dashboard", "/cv_en")
+			new Item("Polish", "dashboard", "/cv_pl", "href"),
+			new Item("English", "dashboard", "/cv_en", "href")
 		],
 		middle: [
-			new Item("Dashboard", "dashboard", "/"),
+			new Item("Notes", "dashboard", "/n"),
+			new Item("Food wheel", "dashboard", "/food_wheel")
 		],
 		bottom: [
-			new Item("Github", "github", "/github"),
-			new Item("Email", "email", "mailto:root@bonusplay.pl"),
-			new Item("Facebook", "facebook", "/facebook"),
-			new Item("Discord", "discord", "/discord"),
-			new Item("YouTube", "youtube", "/youtube")
+			new Item("Github", "github", "/github", "href"),
+			new Item("Email", "email", "mailto:root@bonusplay.pl", "href"),
+			new Item("Facebook", "facebook", "/facebook", "href"),
+			new Item("Discord", "discord", "/discord", "href"),
+			new Item("YouTube", "youtube", "/youtube", "href")
 		]
 	}),
 	components: {

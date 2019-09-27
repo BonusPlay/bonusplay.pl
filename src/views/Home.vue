@@ -1,10 +1,10 @@
 <template>
 	<v-container px-2>
-		<v-row wrap align-center fill-height tag="section">
+		<v-row align-center fill-height tag="section">
 			<v-col xs12 md8 text-xs-justify>
 				<h2 class="display-2">About me</h2>
 				<p>
-					My name is Adam Kliś, I'm currently {{getAge(new Date(1999, 1, 7))}}.
+					My name is Adam Kliś, I'm currently {{ age }}.
 					I've been gaming since I was 6 and coding for over 7 years now.
 					What's different about me, is that I learn by practice, trial-and-error.
 					That allows me to understand the code 'my way'.
@@ -34,188 +34,70 @@
 		</v-row>
 		<v-row wrap tag="section">
 			<h2 class="display-2">My projects</h2>
-
-			<v-container>
-				<v-row row wrap>
-					<v-col
-						v-for="project in projects"
-						:key="project.title"
-						xs12
-						md4
-						:class="{'py-1': $vuetify.breakpoint.smAndDown, 'px-1': $vuetify.breakpoint.mdAndUp}"
-					>
-						<v-card height="100%" class="flex-col">
-							<v-card-title primary-title>
-								<h3 class="headline mb-0">{{ project.title }}</h3>
-							</v-card-title>
-							<v-card-text>
-								<span class="text-xs-justify">{{ project.description }}</span>
-							</v-card-text>
-							<v-card-actions>
-								<v-spacer class="hidden-md-and-up" />
-								<v-container fluid pa-0>
-									<v-layout row wrap fill-height align-space-around justify-space-around>
-										<v-flex v-for="link in project.links" :key="link.to">
-											<!-- ugly hack to distinguish between outside link and inside link
-											could be done using another field-->
-											<v-btn v-if="link.to[0] === '/'" :to="link.to" rounded>
-												<v-icon left>{{ link.pack }} fa-{{ link.icon }}</v-icon>
-												{{ link.name }}
-											</v-btn>
-											<v-btn v-else :href="link.to" rounded>
-												<v-icon left>{{ link.pack }} fa-{{ link.icon }}</v-icon>
-												<span>{{ link.name }}</span>
-											</v-btn>
-										</v-flex>
-									</v-layout>
-								</v-container>
-							</v-card-actions>
-						</v-card>
-					</v-col>
-				</v-row>
-			</v-container>
+			<ProjectsDisplay />
 		</v-row>
 		<v-row wrap tag="section">
 			<h2 class="display-2">Games I play</h2>
-			<v-container>
-				<v-row row wrap fill-height align-center justify-space-around>
-					<v-col v-for="game in games" :key="game" xs2>
-						<v-img :src="require(`@/assets/icons-games/${game}.webp`)" />
-					</v-col>
-				</v-row>
-			</v-container>
+			<ImageDisplay :data="games" />
 		</v-row>
 		<v-row wrap tag="section">
 			<h2 class="display-2">Technologies I use</h2>
-			<v-container>
-				<v-row row wrap>
-					<v-col v-for="item in tech" :key="item" xs2 pa-2 d-flex justify-center align-center>
-						<v-img :src="require(`@/assets/icons-tech/${item}.svg`)" />
-					</v-col>
-				</v-row>
-			</v-container>
+			<ImageDisplay :data="tech" />
 		</v-row>
 	</v-container>
 </template>
 
 <script>
+import ProjectsDisplay from "@/components/ProjectsDisplay";
+import ImageDisplay, { Props as ImageDisplayProps } from "@/components/ImageDisplay";
+
 export default {
 	name: "Home",
 	data: () => ({
-		projects: [
-			{
-				title: "HSMod",
-				description: `Hearthstone clone made in Unity3D. Fan made project to implement new game mechanics,
-			cards and heroes to the game we all loved. Due to legal reasons we had to make it closed source and take down the website. Maybe in the future it will come back?`,
-				links: [
-					{
-						to: "https://www.youtube.com/watch?v=0e4Du3KekDo",
-						name: "YouTube",
-						icon: "youtube",
-						pack: "fab"
-					},
-					{
-						to:
-							"https://www.polygon.com/2017/4/13/15292266/hearthstone-new-class-classes-death-knight-demon-hunter-monk-arthas-hsmod-fan-game",
-						name: "Article",
-						icon: "link",
-						pack: "fas"
-					},
-					{
-						to: "/blog/networking/hsmod",
-						name: "Blog",
-						icon: "link",
-						pack: "fas"
-					}
-				]
-			},
-			{
-				title: "BonusPlay.pl",
-				description:
-					"This overcomplicated for no reason, SPA+PWA website and it's, over the top high performance backend architecture.",
-				links: [
-					{
-						to:
-							"https://github.com/BonusPlay/BonusPlay.pl-frontend",
-						name: "frontend",
-						icon: "github",
-						pack: "fab"
-					},
-					{
-						to: "https://github.com/BonusPlay/BonusPlay.pl-backend",
-						name: "backend",
-						icon: "github",
-						pack: "fab"
-					},
-					{
-						to: "/blog/web/website",
-						name: "Blog",
-						icon: "link",
-						pack: "fas"
-					}
-				]
-			},
-			{
-				title: "CounterBonus",
-				description:
-					"A CS:GO cheat written along my adventures when I learned (or at the very least attempted) how to reverse engineer x86 assembly.",
-				links: [
-					{
-						to: "https://github.com/BonusPlay/CounterBonus",
-						name: "Source",
-						icon: "github",
-						pack: "fab"
-					},
-					{
-						to: "/blog/reverse-engineering/counter-bonus",
-						name: "article",
-						icon: "link",
-						pack: "fas"
-					}
-				]
-			}
-		],
-		games: ["csgo", "dota2", "lol", "r6s", "sc2"],
-		tech: [
-			"3dmax",
-			"android",
-			"assembly",
-			"bootstrap",
-			"c",
-			"cpp",
-			"csharp",
-			"git",
-			"go",
-			"hibernate",
-			"html5",
-			"java",
-			"kotlin",
-			"latex",
-			//"mysql",
-			"mariadb",
-			"nodejs",
-			//"opencv",
-			"python",
-			"redis",
-			//"sass",
-			"spring",
-			"traefik",
-			"trello",
-			"unity"
-		]
+		// dirty one liner from SO https://stackoverflow.com/a/24181701
+		age: Math.abs(new Date(Date.now() - new Date(1999, 1, 7)).getUTCFullYear() - 1970),
+		games: new ImageDisplayProps(
+			[
+				"csgo",
+				"dota2",
+				"lol",
+				"r6s",
+				"sc2"
+			].map(game => require(`@/assets/icons-games/${game}.webp`))
+		),
+		tech: new ImageDisplayProps(
+			[
+				"3dmax",
+				"android",
+				"assembly",
+				"bootstrap",
+				"c",
+				"cpp",
+				"csharp",
+				"git",
+				"go",
+				"hibernate",
+				"html5",
+				"java",
+				"kotlin",
+				"latex",
+				//"mysql",
+				"mariadb",
+				"nodejs",
+				//"opencv",
+				"python",
+				"redis",
+				//"sass",
+				"spring",
+				"traefik",
+				"trello",
+				"unity"
+			].map(tech => require(`@/assets/icons-tech/${tech}.svg`))
+		)
 	}),
-	methods: {
-		getAge(first) {
-			let diff = (first.getTime() - new Date().getTime()) / 1000;
-			diff /= 60 * 60 * 24;
-			return Math.abs(Math.round(diff / 365.25));
-		}
+	components: {
+		ProjectsDisplay,
+		ImageDisplay
 	}
 };
 </script>
-
-<style lang="less" scoped>
-.v-card__actions {
-	margin-top: auto;
-}
-</style>
