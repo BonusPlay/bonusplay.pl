@@ -11,7 +11,7 @@
 				<v-row justify="space-around">
 					<v-spacer/>
 					<v-col v-for="btn in data.buttons" :key="btn.title">
-						<IconButton :data="btn"/>
+						<IconButton :data="btn" rounded/>
 					</v-col>
 					<v-spacer/>
 				</v-row>

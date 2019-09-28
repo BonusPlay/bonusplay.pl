@@ -1,7 +1,7 @@
 <template>
-	<v-container px-2>
+	<v-container>
 		<v-row align-center fill-height tag="section">
-			<v-col xs12 md8 text-xs-justify>
+			<v-col cols=12 md=8 class="text-justify">
 				<h2 class="display-2">About me</h2>
 				<p>
 					My name is Adam Kliś, I'm currently {{ age }}.
@@ -28,8 +28,8 @@
 				</p>
 				<p>In my free time, I like to play guitar, collect old coins and play computer games with my friends.</p>
 			</v-col>
-			<v-col xs12 md4 :class="{'pl-3': $vuetify.breakpoint.mdAndUp}" contain>
-				<v-img contain :src="require('@/assets/mecrop.webp')" max-height="30vh" />
+			<v-col cols=12 md=4 :class="{'pl-3': $vuetify.breakpoint.mdAndUp}" contain>
+				<v-img contain :src="require('@/assets/mecrop.webp')" max-height="30vh"/>
 			</v-col>
 		</v-row>
 		<v-row wrap tag="section">

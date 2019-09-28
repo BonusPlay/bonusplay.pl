@@ -22,9 +22,11 @@
 								<v-list-item-title>{{ item.title }}</v-list-item-title>
 								<v-list-item-sub-title>{{ item.value }}</v-list-item-sub-title>
 							</v-list-item-content>
+
 							<v-list-item-action-text v-if="item.type === 'copy'" v-clipboard="item.value">
 								<v-btn rounded outline>copy</v-btn>
 							</v-list-item-action-text>
+							
 							<v-list-item-action-text v-else-if="item.type === 'link'">
 								<v-btn rounded outline :href="item.value">link</v-btn>
 							</v-list-item-action-text>

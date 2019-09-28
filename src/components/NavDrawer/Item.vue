@@ -1,7 +1,7 @@
 <template>
 	<v-list-item :[item.type]="item.link" link>
 		<v-list-item-icon>
-			<v-icon>mdi-{{ item.icon }}</v-icon>
+			<v-icon>{{ item.icon }}</v-icon>
 		</v-list-item-icon>
 		<v-list-item-content>
 			<v-list-item-title>{{ item.title }}</v-list-item-title>

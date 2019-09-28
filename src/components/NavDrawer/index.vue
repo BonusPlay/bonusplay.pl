@@ -28,24 +28,24 @@ export default {
 	name: "NavigationDrawer",
 	data: () => ({
 		top: [
-			new Item("Home", "dashboard", "/"),
-			new Item("Blog", "dashboard", "/blog"),
-			new Item("API", "dashboard", "/api")
+			new Item("Home", "fas fa-home", "/"),
+			new Item("Blog", "fas fa-blog", "/blog"),
+			new Item("API", "fas fa-bars", "/api")
 		],
 		cv: [
-			new Item("Polish", "dashboard", "/cv_pl", "href"),
-			new Item("English", "dashboard", "/cv_en", "href")
+			new Item("Polish", "", "/cv_pl", "href"),
+			new Item("English", "", "/cv_en", "href")
 		],
 		middle: [
-			new Item("Notes", "dashboard", "/n"),
-			new Item("Food wheel", "dashboard", "/food_wheel")
+			new Item("Notes", "fas fa-sticky-note", "/n"),
+			new Item("Food wheel", "fas fa-utensils", "/food_wheel")
 		],
 		bottom: [
-			new Item("Github", "github", "/github", "href"),
-			new Item("Email", "email", "mailto:root@bonusplay.pl", "href"),
-			new Item("Facebook", "facebook", "/facebook", "href"),
-			new Item("Discord", "discord", "/discord", "href"),
-			new Item("YouTube", "youtube", "/youtube", "href")
+			new Item("Github", "fab fa-github", "/github", "href"),
+			new Item("Email", "fas fa-envelope", "mailto:root@bonusplay.pl", "href"),
+			new Item("Facebook", "fab fa-facebook", "/facebook", "href"),
+			new Item("Discord", "fab fa-discord", "/discord", "href"),
+			new Item("YouTube", "fab fa-youtube", "/youtube", "href")
 		]
 	}),
 	components: {

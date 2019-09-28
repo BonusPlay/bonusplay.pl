@@ -1,6 +1,6 @@
 <template>
-	<v-btn tile :[data.type]="data.link">
-		<v-icon left>mdi-{{ data.icon }}</v-icon>
+	<v-btn tile :[data.type]="data.link" :rounded="rounded">
+		<v-icon left>{{ data.icon }}</v-icon>
 		{{ data.text }}
 	</v-btn>
 </template>
@@ -26,7 +26,8 @@ export class Props
 export default {
 	name: "IconButton",
 	props: {
-		data: Props
+		data: Props,
+		rounded: Boolean
 	}
 }
 </script>
