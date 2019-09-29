@@ -1,0 +1,3 @@
+smtpd_sasl_path = smtpd
+smtpd_sasl_type = cyrus
+smtpd_sasl_auth_enable = yes

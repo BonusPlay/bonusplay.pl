@@ -1,18 +1,16 @@
 <template>
-	<v-container fluid>
-		<v-flex>
-			<wip />
-		</v-flex>
-	</v-container>
+	<div class="has-text-justified content">
+		<wip/>
+	</div>
 </template>
 
 <script>
 import wip from "@/components/WIP";
 
 export default {
-	name: "Api",
+	name: "Networking0",
 	components: {
 		wip
 	}
-};
+}
 </script>

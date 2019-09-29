@@ -1,72 +1,46 @@
 <template>
-	<v-app dark id="app">
-		<Navbar/>
+	<v-app>
+		<NavDrawer :open.sync="navDrawerOpen"/>
 		<v-content>
-			<transition
-				name="fade"
-				mode="out-in"
-				@beforeLeave="beforeLeave"
-				@enter="enter"
-				@afterEnter="afterEnter"
-			>
-				<router-view class="main"/>
-			</transition>
+			<NavBar :open.sync="navDrawerOpen"/>
+			<router-view />
 		</v-content>
-		<MyFooter/>
+		<Footer/>
 	</v-app>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Navbar from "./components/Navbar.vue";
-import MyFooter from "./components/Footer.vue";
+<script>
+import NavBar from "./components/NavBar";
+import NavDrawer from "./components/NavDrawer";
+import Footer from "./components/Footer";
 
-@Component({
+export default {
+	name: "App",
+	data: () => ({
+		navDrawerOpen: false
+	}),
+	created() {
+		// open on large devices, closed on smaller ones
+		this.navDrawerOpen = this.$vuetify.breakpoint.lgAndUp;
+	},
 	components: {
-		Navbar,
-		MyFooter
+		NavBar,
+		NavDrawer,
+		Footer
 	}
-})
-export default class App extends Vue {
-	prevHeight: string | null = "0";
-
-	beforeLeave(element: any) {
-		this.prevHeight = getComputedStyle(element).height;
-	}
-
-	enter(element: any) {
-		const { height } = getComputedStyle(element);
-		element.style.height = this.prevHeight;
-		setTimeout(() => {
-			element.style.height = height;
-		});
-	}
-
-	afterEnter(element: any) {
-		element.style.height = "auto";
-	}
-}
+};
 </script>
 
-
+<!--
+This is NOT scoped CSS, so it's applied to entire website.
+It is used to override vuetify's CSS without the need to build entire vuetify SCSS.
+-->
 <style lang="less">
-#app {
-	font-family: "Avenir", Helvetica, Arial, sans-serif;
-	font-size: 1rem;
-	background-color: darken(#303030, 10%);
-	color: @text;
+#app code {
+	background-color: #424242; // grey darken-3
+}
 
-	.fade-enter-active,
-	.fade-leave-active {
-		transition-duration: 0.2s;
-		transition-property: height, opacity;
-		transition-timing-function: ease;
-		overflow: hidden;
-	}
-
-	.fade-enter,
-	.fade-leave-to {
-		opacity: 0;
-	}
+#app a code {
+	color: #AB47BC; // purple lighten-1
 }
 </style>
