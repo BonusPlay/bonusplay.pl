@@ -11,13 +11,9 @@
 						<span class="text-xs-justify">{{ section.description }}</span>
 					</v-card-text>
 
-					<v-container>
-						<v-row v-for="article in section.articles" :key="article.title">
-							<v-btn :to="`/blog/${article.to}`" block>
-								<span>{{article.title}}</span>
-							</v-btn>
-						</v-row>
-					</v-container>
+					<v-btn :to="`/blog/${article.to}`" v-for="article in section.articles" :key="article.title" class="mt-1">
+						<span>{{article.title}}</span>
+					</v-btn>
 				</v-card>
 			</v-col>
 		</v-row>
