@@ -1,7 +1,8 @@
 <template>
 	<v-app>
-		<NavDrawer/>
+		<NavDrawer :open.sync="navDrawerOpen"/>
 		<v-content>
+			<NavBar :open.sync="navDrawerOpen"/>
 			<router-view />
 		</v-content>
 		<Footer/>
@@ -9,12 +10,21 @@
 </template>
 
 <script>
+import NavBar from "./components/NavBar";
 import NavDrawer from "./components/NavDrawer";
 import Footer from "./components/Footer";
 
 export default {
 	name: "App",
+	data: () => ({
+		navDrawerOpen: false
+	}),
+	created() {
+		// open on large devices, closed on smaller ones
+		this.navDrawerOpen = this.$vuetify.breakpoint.lgAndUp;
+	},
 	components: {
+		NavBar,
 		NavDrawer,
 		Footer
 	}

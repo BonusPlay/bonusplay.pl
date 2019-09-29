@@ -123,13 +123,13 @@
 		<!-- Afterword -->
 		<v-flex>
 			<h2 class="display-2 text-xs-center">Afterword</h2>If you want to dive into cheating (for educational purposes), feel free to use:
-			<!-- <ul>
+			<ul>
 				<li v-for="link in links" :key="link.description">
 					<IconButton :data="link.button" />
 					<span>{{ link.description }}</span>
 				</li>
-			</ul>Good luck! -->
-			<!-- {{links}} -->
+			</ul>
+			Good luck!
 		</v-flex>
 	</v-layout>
 </template>

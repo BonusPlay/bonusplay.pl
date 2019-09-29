@@ -8,7 +8,7 @@
 		</v-card-text>
 		<v-card-actions>
 			<v-container pa-0>
-				<v-row justify="space-around">
+				<v-row justify="space-around" dense>
 					<v-spacer/>
 					<v-col v-for="btn in data.buttons" :key="btn.title">
 						<IconButton :data="btn" rounded/>
