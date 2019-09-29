@@ -1,7 +1,7 @@
 <template>
 	<v-container>
 		<v-row>
-			<v-col cols="6">
+			<v-col cols="12" lg="6">
 				<v-list>
 					<v-list-group
 						v-for="category in data"
@@ -20,15 +20,15 @@
 						<v-list-item v-for="item in category.items" :key="item.value">
 							<v-list-item-content>
 								<v-list-item-title>{{ item.title }}</v-list-item-title>
-								<v-list-item-sub-title>{{ item.value }}</v-list-item-sub-title>
+								<v-list-item-subtitle>{{ item.value }}</v-list-item-subtitle>
 							</v-list-item-content>
 
 							<v-list-item-action-text v-if="item.type === 'copy'" v-clipboard="item.value">
-								<v-btn rounded outline>copy</v-btn>
+								<v-btn rounded outlined>copy</v-btn>
 							</v-list-item-action-text>
 							
 							<v-list-item-action-text v-else-if="item.type === 'link'">
-								<v-btn rounded outline :href="item.value">link</v-btn>
+								<v-btn rounded outlined :href="item.value">link</v-btn>
 							</v-list-item-action-text>
 						</v-list-item>
 					</v-list-group>
