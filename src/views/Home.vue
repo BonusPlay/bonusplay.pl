@@ -1,8 +1,10 @@
 <template>
 	<v-container>
 		<v-row tag="section">
+			<v-col cols="12">
+				<h2 class="display-2 text-center">About me</h2>
+			</v-col>
 			<v-col cols="12" md="8" offset-md="1" class="text-justify">
-				<h2 class="display-2">About me</h2>
 				<p>
 					My name is Adam Kliś, I'm currently {{ age }}.
 					I've been gaming since I was 6 and coding for over 7 years now.
